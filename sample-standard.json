@@ -1,0 +1,19 @@
+{
+  "printer_model": "LJ-MFP-001",
+  "language": "zh_CN",
+  "items": [
+    { "key": "Manufacturer", "standard_text": "HP" },
+    { "key": "ModelName", "standard_text": "HP LaserJet Pro MFP" },
+    { "key": "NickName", "standard_text": "HP LaserJet Pro MFP 中文" },
+    { "key": "PageSize", "standard_text": "页面大小" },
+    { "key": "PageSize.A4", "standard_text": "A4" },
+    { "key": "PageSize.Letter", "standard_text": "Letter" },
+    { "key": "Duplex", "standard_text": "双面打印" },
+    { "key": "Duplex.None", "standard_text": "关闭" },
+    { "key": "Duplex.DuplexNoTumble", "standard_text": "双面打印" },
+    { "key": "Duplex.DuplexTumble", "standard_text": "短边翻转" },
+    { "key": "ColorModel", "standard_text": "颜色模式" },
+    { "key": "ColorModel.Gray", "standard_text": "黑白" },
+    { "key": "ColorModel.RGB", "standard_text": "彩色" }
+  ]
+}

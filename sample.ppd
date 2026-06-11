@@ -1,0 +1,21 @@
+*PPD-Adobe: "4.3"
+*LanguageEncoding: UTF-8
+*LanguageVersion: Chinese
+*Manufacturer: "HP"
+*ModelName: "HP LaserJet Pro MFP"
+*NickName: "HP LaserJet Pro MFP 中文"
+*OpenUI *PageSize/页面大小: PickOne
+*DefaultPageSize: A4
+*PageSize A4/A4: "<</PageSize[595 842]>>setpagedevice"
+*PageSize Letter/信纸: "<</PageSize[612 792]>>setpagedevice"
+*CloseUI: *PageSize
+*OpenUI *Duplex/双面打印: PickOne
+*DefaultDuplex: None
+*Duplex None/关闭: ""
+*Duplex DuplexNoTumble/双面: ""
+*Duplex DuplexTumble/短边翻转: ""
+*CloseUI: *Duplex
+*OpenUI *ColorModel/颜色模式: PickOne
+*ColorModel Gray/黑白: ""
+*ColorModel RGB/彩色: ""
+*CloseUI: *ColorModel

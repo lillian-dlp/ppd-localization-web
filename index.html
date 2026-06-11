@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PPD本地化测试工具</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>PPD本地化测试工具</h1>
+          <span class="version">Web V1.0</span>
+        </div>
+        <nav aria-label="工具导航">
+          <button class="ghost-button" id="open-config" type="button" title="配置">配置</button>
+          <button class="ghost-button" id="open-help" type="button" title="帮助">帮助</button>
+          <button class="ghost-button" id="open-about" type="button" title="关于">关于</button>
+        </nav>
+      </header>
+
+      <main class="workspace">
+        <aside class="printer-panel" aria-label="打印机选择">
+          <div class="panel-heading">
+            <h2>打印机</h2>
+            <div class="printer-heading-tools">
+              <button class="icon-button" id="printer-refresh" type="button" title="刷新打印机列表" aria-label="刷新打印机列表">刷新</button>
+              <span id="printer-count">0</span>
+            </div>
+          </div>
+          <p class="printer-refresh-status" id="printer-refresh-status">正在读取CUPS打印机...</p>
+          <label class="search-field">
+            <span>搜索</span>
+            <input id="printer-search" type="search" placeholder="名称或型号" autocomplete="off" />
+          </label>
+          <div class="printer-list" id="printer-list"></div>
+        </aside>
+
+        <section class="main-panel">
+          <section class="setup-band" aria-label="测试配置">
+            <div class="printer-detail">
+              <div class="printer-mark" id="selected-printer-mark" aria-hidden="true">PP</div>
+              <div>
+                <div class="label">当前对象</div>
+                <h2 id="selected-printer-name">未选择打印机</h2>
+                <p id="selected-printer-meta">请选择左侧打印机，或直接导入PPD后运行测试。</p>
+                <p class="path-line" id="selected-ppd-path">PPD路径：未加载</p>
+              </div>
+            </div>
+
+            <div class="setup-controls">
+              <label>
+                <span>语言</span>
+                <select id="language-select">
+                  <option value="zh_CN">简体中文 zh_CN</option>
+                  <option value="zh_TW">繁体中文 zh_TW</option>
+                  <option value="ja">日语 ja</option>
+                  <option value="ko">韩语 ko</option>
+                  <option value="fr">法语 fr</option>
+                  <option value="de">德语 de</option>
+                  <option value="es">西班牙语 es</option>
+                  <option value="it">意大利语 it</option>
+                  <option value="pt_BR">葡萄牙语 pt_BR</option>
+                  <option value="ru">俄语 ru</option>
+                </select>
+              </label>
+              <button class="primary-button" id="run-test" type="button">开始测试</button>
+              <button class="secondary-button" id="rerun-test" type="button" disabled>重新测试</button>
+              <button class="secondary-button" id="load-sample" type="button">加载样例</button>
+              <button class="secondary-button" id="export-report" type="button" disabled>导出报告</button>
+            </div>
+          </section>
+
+          <section class="file-band" aria-label="文件导入">
+            <div class="drop-zone" id="ppd-drop-zone">
+              <div>
+                <strong>PPD文件</strong>
+                <p id="ppd-file-name">拖拽PPD到这里，或点击选择本地文件。</p>
+              </div>
+              <label class="file-button">
+                选择PPD
+                <input id="ppd-file-input" type="file" accept=".ppd,.txt,text/plain" />
+              </label>
+            </div>
+            <div class="drop-zone" id="standard-drop-zone">
+              <div>
+                <strong>标准内容库</strong>
+                <p id="standard-file-name">支持 Excel / JSON / CSV；未导入时结果会标记为待确认。</p>
+              </div>
+              <label class="file-button">
+                选择标准库
+                <input id="standard-file-input" type="file" accept=".xlsx,.xlsm,.json,.csv,.txt,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel.sheet.macroEnabled.12" />
+              </label>
+            </div>
+          </section>
+
+          <section class="ocr-band" aria-label="OCR截断判断">
+            <div class="ocr-heading">
+              <div>
+                <h2>RapidOCR视觉截断验证</h2>
+                <p id="ocr-status">正在检测OCR环境...</p>
+              </div>
+              <button class="secondary-button" id="run-ocr-test" type="button" disabled>OCR截断判断</button>
+            </div>
+            <div class="ocr-grid">
+              <label>
+                <span>期望完整字符串</span>
+                <input id="ocr-expected-text" type="text" placeholder="输入标准库中的完整字符串" />
+              </label>
+              <label>
+                <span>OCR语言</span>
+                <select id="ocr-language">
+                  <option value="zh_CN">中文</option>
+                  <option value="en">英文</option>
+                  <option value="ja">日文</option>
+                  <option value="ko">韩文</option>
+                  <option value="fr">法文</option>
+                  <option value="de">德文</option>
+                  <option value="es">西班牙文</option>
+                </select>
+              </label>
+              <label class="file-button ocr-file-button">
+                选择控件截图
+                <input id="ocr-image-input" type="file" accept="image/png,image/jpeg,image/webp,image/bmp" />
+              </label>
+              <p class="ocr-file-name" id="ocr-image-name">建议上传单个控件的裁剪图，右边界即控件边界。</p>
+            </div>
+            <div class="ocr-result" id="ocr-result">等待截图和期望字符串。</div>
+          </section>
+
+          <section class="capture-band" aria-label="Linux自动截图比对">
+            <div class="ocr-heading">
+              <div>
+                <h2>Linux自动截图比对</h2>
+                <p id="linux-capture-status">正在检测Linux截图工具...</p>
+              </div>
+              <button class="secondary-button" id="run-linux-capture" type="button" disabled>截图并比对</button>
+            </div>
+            <div class="capture-grid">
+              <label>
+                <span>期望完整字符串</span>
+                <input id="linux-expected-text" type="text" placeholder="输入标准库中的完整字符串" />
+              </label>
+              <label>
+                <span>窗口标题可选</span>
+                <input id="linux-window-title" type="text" placeholder="例如 Print 或 Printer" />
+              </label>
+              <label>
+                <span>x</span>
+                <input id="linux-roi-x" type="number" min="0" value="0" />
+              </label>
+              <label>
+                <span>y</span>
+                <input id="linux-roi-y" type="number" min="0" value="0" />
+              </label>
+              <label>
+                <span>宽</span>
+                <input id="linux-roi-width" type="number" min="1" value="240" />
+              </label>
+              <label>
+                <span>高</span>
+                <input id="linux-roi-height" type="number" min="1" value="48" />
+              </label>
+            </div>
+            <div class="ocr-result" id="linux-capture-result">等待Linux截图参数。</div>
+          </section>
+
+          <section class="summary-band" aria-label="测试摘要">
+            <div class="summary-heading">
+              <div>
+                <h2>测试摘要</h2>
+                <p id="run-meta">尚未运行测试</p>
+              </div>
+              <strong class="overall pending" id="overall-result">待测试</strong>
+            </div>
+            <div class="metric-grid">
+              <div class="metric"><span>总项数</span><strong id="metric-total">0</strong></div>
+              <div class="metric pass"><span>通过</span><strong id="metric-pass">0</strong></div>
+              <div class="metric fail"><span>失败</span><strong id="metric-fail">0</strong></div>
+              <div class="metric warn"><span>警告</span><strong id="metric-warn">0</strong></div>
+            </div>
+          </section>
+
+          <section class="results-band" aria-label="结果明细">
+            <div class="result-tools">
+              <div class="filter-row" id="filter-row" role="tablist" aria-label="结果筛选"></div>
+              <label class="result-search">
+                <span>搜索结果</span>
+                <input id="result-search" type="search" placeholder="Key、内容、备注" />
+              </label>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-sort="index">序号</th>
+                    <th data-sort="category">分类</th>
+                    <th data-sort="key">Key</th>
+                    <th data-sort="standardText">标准内容</th>
+                    <th data-sort="actualText">实际内容</th>
+                    <th data-sort="status">状态</th>
+                    <th data-sort="exceptionType">异常类型</th>
+                    <th data-sort="lineNo">行号</th>
+                    <th>备注</th>
+                  </tr>
+                </thead>
+                <tbody id="result-body">
+                  <tr>
+                    <td colspan="9" class="empty-state">暂无测试结果</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="detail-dialog" class="app-dialog wide-dialog">
+      <form method="dialog">
+        <header>
+          <h2>结果详情</h2>
+          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
+        </header>
+        <div id="detail-content" class="dialog-content"></div>
+      </form>
+    </dialog>
+
+    <dialog id="config-dialog" class="app-dialog">
+      <form method="dialog" id="config-form">
+        <header>
+          <h2>配置</h2>
+          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
+        </header>
+        <div class="dialog-content config-grid">
+          <label>
+            <span>PPD扫描目录</span>
+            <input id="config-ppd-root" type="text" placeholder="./ppd" />
+          </label>
+          <label>
+            <span>标准库目录</span>
+            <input id="config-standard-root" type="text" placeholder="./standards" />
+          </label>
+          <label>
+            <span>报告输出目录</span>
+            <input id="config-report-root" type="text" placeholder="./reports" />
+          </label>
+          <label>
+            <span>编码优先级</span>
+            <input id="config-encodings" type="text" placeholder="utf-8,gb18030,big5" />
+          </label>
+          <label class="switch-row">
+            <input id="config-ignore-trim" type="checkbox" />
+            <span>忽略首尾空格</span>
+          </label>
+          <label class="switch-row">
+            <input id="config-ignore-case" type="checkbox" />
+            <span>忽略大小写</span>
+          </label>
+          <label>
+            <span>截断字节上限</span>
+            <input id="config-threshold" type="number" min="1" max="200" step="1" />
+          </label>
+        </div>
+        <footer>
+          <button class="ghost-button" id="reset-config" type="button">重置默认</button>
+          <button class="primary-button" value="default" type="submit">保存</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="export-dialog" class="app-dialog">
+      <form method="dialog">
+        <header>
+          <h2>导出报告</h2>
+          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
+        </header>
+        <div class="dialog-content export-box">
+          <label>
+            <span>报告格式</span>
+            <select id="export-format">
+              <option value="markdown">Markdown</option>
+              <option value="html">HTML</option>
+            </select>
+          </label>
+          <label>
+            <span>文件名</span>
+            <input id="export-filename" type="text" />
+          </label>
+          <p id="export-hint">浏览器版会通过下载保存报告。</p>
+        </div>
+        <footer>
+          <button class="primary-button" id="confirm-export" type="button">导出</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="help-dialog" class="app-dialog wide-dialog">
+      <form method="dialog">
+        <header>
+          <h2>帮助</h2>
+          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
+        </header>
+        <div class="dialog-content help-copy">
+          <h3>操作步骤</h3>
+          <p>选择打印机和语言，导入PPD文件，可选导入标准内容库，然后点击开始测试。结果表支持筛选、搜索、排序和详情查看。</p>
+          <h3>标准库格式</h3>
+          <p>Excel标准库建议包含 <code>PPD Key</code> 列和当前语言列，例如 <code>中文</code>、<code>繁体中文(zh_TW)</code>、<code>英语(en)</code>。JSON可使用 <code>{"items":[{"key":"PageSize.A4","standard_text":"A4"}]}</code>，CSV建议包含 <code>key</code> 与 <code>standard_text</code> 列。</p>
+          <h3>异常类型</h3>
+          <p>工具会识别缺失、截断、乱码、格式异常、错误翻译、多余内容和待人工确认。选择本机打印机时会从 CUPS 队列关联的本地 PPD 提取内容，也可以手动导入 PPD 文件。</p>
+          <h3>OCR截断验证</h3>
+          <p>工具优先使用轻量级 RapidOCR。请上传单个控件的裁剪截图并输入完整期望字符串，工具会结合 OCR 文本、识别框是否贴近右边界、省略号和置信度判断视觉截断。</p>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="about-dialog" class="app-dialog">
+      <form method="dialog">
+        <header>
+          <h2>关于</h2>
+          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
+        </header>
+        <div class="dialog-content help-copy">
+          <p><strong>PPD本地化测试工具 Web V1.0</strong></p>
+          <p>根据《PPD本地化测试工具需求合集》实现，覆盖单文件测试、字段提取、标准比对、异常识别、结果展示和报告导出。</p>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+    <script src="./app.js?v=2"></script>
+  </body>
+</html>
