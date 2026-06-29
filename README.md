@@ -1,131 +1,169 @@
-# PPD本地化测试工具 Web版
+# PPD 本地化测试工具（Web 版）
 
-这是根据 `PPD本地化测试工具需求合集.md` 实现的静态网页版 V1.0。
+一个网页测试工具：**从打印机列表获取 PPD**，**校验 PPD 中的多语言内容是否与基线一致**，并**检测是否出现截断**（以及乱码、缺失、错误翻译、超长风险）。
 
-## 使用方式
+仅依赖 **Python 标准库**（服务端）与 **原生 JavaScript**（前端），无需安装第三方包。
 
-推荐启动本地服务运行，这样可以通过接口读取 CUPS 打印机、实际图标和 `/etc/cups/ppd` 中的 PPD：
+---
+
+## 一、快速开始
 
 ```bash
-python3 /Users/Apple/Documents/opencode/poppler-26.02.0/ppd-localization-web/server.py
+python3 /Users/Apple/claude/ppdtest/server.py        # 默认端口 4173
+python3 /Users/Apple/claude/ppdtest/server.py 8080   # 自定义端口
 ```
 
-然后打开：
+浏览器打开：
 
 ```text
 http://127.0.0.1:4173/
 ```
 
-也可以直接用浏览器打开静态页面，但静态模式无法访问 CUPS：
+点页面上的 **「加载样例」** 可用内置 `sample.ppd` + `baseline.sample.json` 跑通完整流程。
 
-```text
-/Users/Apple/Documents/opencode/poppler-26.02.0/ppd-localization-web/index.html
-```
+> 也可直接用浏览器打开 `index.html` 离线使用：解析、比对、截断检测、报告导出都在前端完成；只是“从 CUPS 获取打印机列表 / PPD”需要 `server.py`。
 
-目录中包含 `sample.ppd` 和 `sample-standard.json`，页面里也有“加载样例”按钮，可以先用它们跑一遍完整流程。
+---
 
-## 已实现能力
+## 二、使用流程
 
-- 打印机列表、搜索、选中详情
-- 从 CUPS / `/etc/cups/ppd` 获取实际打印机队列、PPD 和 PPD 中声明的打印机图标
-- 语言/区域选择
-- PPD 文件导入与拖拽导入
-- JSON / CSV 标准内容库导入
-- PPD 可见本地化字段提取
-- 标准内容比对
-- 缺失、截断、乱码、格式异常、错误翻译、多余内容识别
-- RapidOCR 视觉截断验证：上传控件截图和期望字符串，按 OCR 文本、置信度、右边界贴边、省略号判断 UI 是否截断；PaddleOCR 可作为备用引擎
-- Linux 自动截图比对：输入控件 ROI 坐标后，服务端自动截图、裁剪、OCR 并判断是否截断
-- 摘要统计、筛选、搜索、排序、详情弹窗
-- Markdown / HTML 报告导出
-- 配置项本地保存
+1. **获取 PPD**（三选一）
+   - **从 CUPS 获取列表** → 点击某台打印机，自动读取其 `/etc/cups/ppd/<队列>.ppd`；
+   - **导入 PPD 文件**（点击或拖拽 `.ppd`）；
+   - **加载样例**。
+2. **选择目标语言**：下拉框自动列出该 PPD 中实际存在的本地化语言（如 `zh_CN`、`zh_TW`、`ja`…）。
+3. **导入基线**（标准内容库，JSON 或 CSV；也可直接粘贴）。可设置“默认最大显示长度”用于截断风险预警。
+4. **开始比对** → 得到逐项结果（一致 / 截断 / 不一致 / 缺失 / 乱码 / 超长预警 / 多余），可按状态筛选、搜索。
+5. **导出报告**：HTML 或 Markdown。
 
-## RapidOCR 截断验证
+---
 
-该能力优先使用轻量级 RapidOCR。需要在启动 `server.py` 的 Python 环境中安装：
+## 三、基线（标准内容库）格式
 
-```bash
-pip install rapidocr onnxruntime
-```
+`key` 约定：
+- 选项标签 → 选项关键字，如 `Duplex`；
+- 选项值   → `选项.值`，如 `Duplex.DuplexNoTumble`、`PageSize.A4`。
 
-使用方式：
-
-1. 截取或裁剪待验证的 UI 控件区域，建议只保留单个控件，图片右边界即控件右边界。
-2. 在“PaddleOCR视觉截断验证”中输入标准库里的完整字符串。
-3. 选择 OCR 语言并上传截图。
-4. 点击“OCR截断判断”。
-
-判断规则会综合：
-
-- OCR 识别文本是否为期望字符串前缀
-- 识别框是否贴近图片右边界
-- 是否出现 `...` 或 `…`
-- OCR 平均置信度
-- OCR 文本与期望文本相似度
-
-## Linux 自动截图比对
-
-Linux 自动截图比对需要部署在 Linux 桌面会话中，并安装至少一个截图工具：
-
-```bash
-sudo apt install gnome-screenshot
-```
-
-或使用：
-
-```bash
-sudo apt install scrot xdotool
-```
-
-Wayland 环境可使用：
-
-```bash
-sudo apt install grim
-```
-
-接口：
-
-```text
-GET  /api/capture/linux/status
-POST /api/capture/linux/ocr
-```
-
-`POST /api/capture/linux/ocr` 示例：
-
-```json
-{
-  "expected_text": "双面打印",
-  "language": "zh_CN",
-  "window_title": "Print",
-  "roi": { "x": 100, "y": 180, "width": 240, "height": 48 }
-}
-```
-
-第一版使用坐标 ROI，后续可继续接入 AT-SPI/dogtail 根据控件可访问性信息自动定位控件。
-
-## 标准库示例
-
-JSON：
+**JSON**
 
 ```json
 {
   "printer_model": "LJ-MFP-001",
   "language": "zh_CN",
   "items": [
-    { "key": "PageSize.A4", "standard_text": "A4" },
-    { "key": "Duplex.DuplexNoTumble", "standard_text": "双面打印" }
+    { "key": "Duplex",                 "standard_text": "双面打印" },
+    { "key": "Duplex.DuplexNoTumble", "standard_text": "长边装订", "max_len": 8 }
   ]
 }
 ```
 
-CSV：
+`max_len`（可选）：该项允许的最大字符数，超过即给“超长预警”（潜在 UI 截断风险）。
+
+**CSV**（首行表头）
 
 ```csv
-key,standard_text
-PageSize.A4,A4
-Duplex.DuplexNoTumble,双面打印
+key,standard_text,max_len
+Duplex,双面打印,
+Duplex.DuplexNoTumble,长边装订,8
 ```
 
-## 说明
+### Excel 多语言总表作基线（.xlsx）
 
-浏览器不能在未授权的情况下扫描任意本地目录，因此 Web 版的“自动获取PPD”以打印机路径提示和手动导入为主。真实测试通过导入 PPD 文件完成。
+当基线是一张“多语言字符串总表”（每行一条字符串、每语言一列、可能带「字符限制」列、不含 PPD 选项键）时，工具用**文本锚点**把它与 PPD 连接起来，无需手工转 key。
+
+页面「基线」区 →「导入 Excel 多语言总表作基线」：
+
+1. **选择 Excel (.xlsx)**：浏览器把文件上传到 `server.py`，由服务端 `openpyxl` 解析（前端不引第三方库）。
+2. 选 **工作表**（如 `LP6224驱动`）与 **锚点**（英文 / 中文；两列在表内通常 100% 唯一）。
+3. **目标语言**取上方「目标语言」（即测试 PPD 选定的语种，如 `de`）。
+4. 点 **「用作基线（锚点连接）」**：对每个 PPD 条目，用其英文（或中文）文本在 Excel 中查到对应行 → 取该行目标语言译文作为基线、并取该行「字符限制」作为 `max_len` → 生成按 PPD 选项键组织的基线。
+5. 之后照常 **开始比对（当前语言）/ 导出报告**。下方会显示覆盖率（锚点命中条目数、Excel 行用到数、该语言缺译数）。
+
+#### 一键比对所有语言
+
+导入 Excel 后,点 **「一键比对所有语言」** 会对该工作表的**全部语言**(锚点列除外)各跑一遍,结果分两部分:
+
+- **总体概述**:每种语言一行,列出命中条目数与各状态计数（一致/截断/不一致/缺失/乱码/超长/多余）及结论（通过 / N 问题）;顶部卡片汇总「比对语言数 / 全部通过 / 有问题语言 / 错误项合计」。「错误」= 截断+不一致+缺失+乱码（超长、多余仅作提示）。
+- **分语言明细**:每种语言一个可展开块,**只列该语言的具体错误项**(Key、基线文本、PPD 文本、状态、说明);有问题的语言默认展开。
+
+导出的 HTML / Markdown 报告同样是「① 总体概述 + ② 分语言明细」两段式。Excel 某语言无对应列或锚点未命中的,会在概述里标「跳过」。
+
+要点：
+- 锚点为 **trim + 折叠空白后的精确匹配**；PPD 与 Excel 英文若措辞/标点不同，会落入“未覆盖”（覆盖率提示中可见），不做模糊匹配。
+- Excel 该语言**单元格为空（缺译）**的行会被跳过并单独计数，不误判为“不一致”。
+- 表头语言码会自动归一（`enus→en`、`esmx→es`、`zhtw→zh_TW`、`bu→bg`、`韩国→ko` 等）。
+- 「字符限制」列存在时按行上限判“超长”；不存在时退回页面「默认最大显示长度」。
+
+也可用命令行预览某表某语言的连接前清单：
+
+```bash
+python3 xlsx_baseline.py 总表.xlsx LP6224驱动 de
+```
+
+---
+
+## 四、判定规则
+
+| 状态 | 含义 / 触发条件 |
+|---|---|
+| **一致** | PPD 目标语言文本与基线完全相同 |
+| **截断** | ①PPD 文本以 `…`/`...` 结尾且去掉后是基线前缀；或 ②PPD 文本是基线的前缀且更短（内容不完整） |
+| **超长预警** | 文本字符数超过 `max_len`（或全局默认上限），存在 UI 截断风险 |
+| **不一致** | 文本不同且非前缀关系（错误翻译 / 内容不同） |
+| **缺失** | 基线有该 key，但 PPD 目标语言中找不到 |
+| **乱码** | 含替换字符 `�`、连续 `??` 或控制字符（编码异常） |
+| **多余** | PPD 有该语言本地化，但基线未覆盖（仅提示） |
+
+字符数按 Unicode 码点统计，中文按 1 字符计。
+
+---
+
+## 五、PPD 多语言内容如何提取
+
+CUPS PPD 用语言前缀存放本地化字符串，本工具据此提取并按 `key` 归并：
+
+| PPD 行 | 含义 | key |
+|---|---|---|
+| `*OpenUI *Duplex/Two-Sided: PickOne` | 选项标签（英文） | `Duplex` |
+| `*Duplex DuplexNoTumble/Long-Edge: "…"` | 选项值（英文） | `Duplex.DuplexNoTumble` |
+| `*zh_CN.Translation Duplex/双面打印: ""` | 选项标签（本地化） | `Duplex` |
+| `*zh_CN.Duplex DuplexNoTumble/长边装订: ""` | 选项值（本地化） | `Duplex.DuplexNoTumble` |
+
+- 自动识别 PPD 中出现的所有本地化语言；
+- 支持 `<HEXHEX>` 十六进制转义（UTF-8 字节）的解码。
+
+---
+
+## 六、HTTP 接口（server.py）
+
+| 接口 | 说明 |
+|---|---|
+| `GET /api/printers` | 汇总 CUPS 打印机（`lpstat` + `/etc/cups/ppd`），含每台 PPD 路径与是否可读 |
+| `GET /api/ppd?name=<队列名>` | 读取 `/etc/cups/ppd/<队列名>.ppd` 原文 |
+| `GET /api/ppd?path=<文件路径>` | 读取指定路径的 PPD 原文 |
+| `POST /api/xlsx` | 请求体为上传的 `.xlsx` 字节，返回各工作表的多语言解析结果 |
+| `GET /api/xlsx?path=<文件路径>` | 按本地路径解析 Excel 总表（便于自动化） |
+| `GET /`、`/sample.ppd` 等 | 静态资源 |
+
+> `/etc/cups/ppd/*.ppd` 通常需要相应权限；列表里会用「PPD可读 / 需权限」标识。必要时用有权限的账号运行 `server.py`。
+
+---
+
+## 七、文件结构
+
+```
+ppdtest/
+├── server.py              # 本地服务端（CUPS 打印机/PPD 读取 + Excel 解析 + 静态服务）
+├── index.html             # 单页应用（PPD 解析、基线比对、截断检测、报告导出）
+├── xlsx_baseline.py       # Excel 多语言总表解析器（openpyxl，可被 server 调用或 CLI 运行）
+├── sample.ppd             # 样例 PPD（含一致/截断/乱码/缺失/错误翻译等各种情形）
+├── baseline.sample.json   # 样例基线
+└── README.md
+```
+
+---
+
+## 八、范围说明
+
+- 本工具的“截断检测”工作在 **PPD 文本内容层面**（省略号、内容不完整、超长预警），无需运行打印机界面即可离线判定，适合在 PPD 发布前批量回归。
+- 若还需 **UI 渲染层面**的截断验证（实际界面截图 + OCR 判断控件是否被裁切），可作为后续增强项接入（截图 + RapidOCR/PaddleOCR）；当前版本聚焦于 PPD 内容与基线的一致性及内容级截断。

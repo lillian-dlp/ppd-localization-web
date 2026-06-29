@@ -1,335 +1,790 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PPD本地化测试工具</title>
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <div class="app-shell">
-      <header class="topbar">
-        <div>
-          <h1>PPD本地化测试工具</h1>
-          <span class="version">Web V1.0</span>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PPD 本地化测试工具</title>
+<style>
+  :root{--bd:#d0d7de;--mut:#656d76;--bg:#f6f8fa;--ok:#1a7f37;--okbg:#e6f4ea;
+        --err:#cf222e;--errbg:#ffebe9;--warn:#9a6700;--warnbg:#fff8c5;--info:#0969da;--infobg:#ddf4ff;}
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",Arial,sans-serif;margin:0;background:var(--bg);color:#1f2328}
+  header{background:#fff;border-bottom:1px solid var(--bd);padding:14px 20px}
+  header h1{font-size:18px;margin:0} header .sub{color:var(--mut);font-size:12px;margin-top:3px}
+  .wrap{display:flex;gap:14px;padding:14px;align-items:flex-start}
+  .panel{background:#fff;border:1px solid var(--bd);border-radius:8px;padding:14px}
+  .left{flex:0 0 290px} .main{flex:1;min-width:0}
+  h2{font-size:14px;margin:0 0 10px} h3{font-size:13px;margin:16px 0 8px;color:var(--mut)}
+  label{font-size:12px;color:var(--mut);display:block;margin:8px 0 3px}
+  input[type=text],input[type=number],select,textarea{width:100%;padding:6px 8px;border:1px solid var(--bd);
+        border-radius:6px;font-size:13px;font-family:inherit}
+  textarea{min-height:60px;resize:vertical}
+  button{cursor:pointer;border:1px solid var(--bd);background:#f6f8fa;border-radius:6px;padding:6px 11px;font-size:13px}
+  button.primary{background:#1f883d;border-color:#1f883d;color:#fff;font-weight:600}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .printer{padding:7px 9px;border:1px solid var(--bd);border-radius:6px;margin-bottom:6px;cursor:pointer;font-size:13px}
+  .printer:hover{background:#f3f6f9} .printer.sel{border-color:#1f883d;background:#eaf6ee}
+  .printer .nm{font-weight:600} .printer .meta{color:var(--mut);font-size:11px;margin-top:2px;word-break:break-all}
+  .pill{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11px;font-weight:600;margin-left:5px}
+  .cards{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+  .card{border:1px solid var(--bd);border-radius:8px;padding:8px 12px;min-width:78px;cursor:pointer;user-select:none}
+  .card.act{outline:2px solid #1f883d}
+  .card .n{font-size:20px;font-weight:700} .card .l{font-size:11px;color:var(--mut)}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;margin-top:8px}
+  th,td{border-bottom:1px solid #eaeef2;padding:6px 8px;text-align:left;vertical-align:top}
+  th{background:var(--bg);position:sticky;top:0}
+  code{font-family:"SF Mono",Consolas,monospace;font-size:12px;white-space:pre-wrap;word-break:break-all}
+  .tag{display:inline-block;padding:1px 8px;border-radius:9px;font-size:11px;font-weight:600;white-space:nowrap}
+  .t-match{color:var(--ok);background:var(--okbg)} .t-truncated{color:var(--err);background:var(--errbg)}
+  .t-mismatch{color:var(--err);background:var(--errbg)} .t-missing{color:var(--warn);background:var(--warnbg)}
+  .t-garbled{color:var(--err);background:var(--errbg)} .t-maxlen{color:var(--warn);background:var(--warnbg)}
+  .t-extra{color:var(--info);background:var(--infobg)}
+  .muted{color:var(--mut);font-size:12px}
+  .hl{background:#fff1b8;border-radius:2px}
+  .sep{height:1px;background:#eaeef2;margin:12px 0}
+  .hint{font-size:11px;color:var(--mut);margin-top:4px}
+  .err{color:var(--err);font-size:12px;margin-top:6px}
+  .filebox{border:1.5px dashed var(--bd);border-radius:8px;padding:10px;text-align:center;font-size:12px;color:var(--mut)}
+  .filebox.drag{border-color:#1f883d;background:#eaf6ee}
+</style>
+</head>
+<body>
+<header>
+  <h1>PPD 本地化测试工具</h1>
+  <div class="sub">从打印机列表获取 PPD · 校验多语言内容是否与基线一致 · 检测截断 / 乱码 / 缺失</div>
+</header>
+
+<div class="wrap">
+  <!-- 左栏: 打印机与数据源 -->
+  <div class="left panel">
+    <h2>1 · 打印机 / PPD 来源</h2>
+    <div class="row">
+      <button id="btnLoadPrinters">从 CUPS 获取列表</button>
+      <button id="btnSample">加载样例</button>
+    </div>
+    <div class="row" style="margin-top:8px;font-size:12px">
+      <span class="muted">点选打印机时载入为:</span>
+      <label style="display:inline;margin:0"><input type="radio" name="ppdRole" value="test" checked> 测试 PPD</label>
+      <label style="display:inline;margin:0"><input type="radio" name="ppdRole" value="base"> 基线 PPD</label>
+    </div>
+    <div id="printerErr" class="err"></div>
+    <div id="printerList" style="margin-top:10px"></div>
+
+    <div class="sep"></div>
+    <label>或导入 PPD 文件</label>
+    <div id="ppdDrop" class="filebox">点击或拖拽 .ppd 文件到此</div>
+    <input id="ppdFile" type="file" accept=".ppd,.PPD,text/plain" hidden>
+    <div id="ppdInfo" class="hint"></div>
+  </div>
+
+  <!-- 右栏: 配置与结果 -->
+  <div class="main">
+    <div class="panel">
+      <h2>2 · 比对配置</h2>
+      <div class="row">
+        <div style="flex:1;min-width:150px">
+          <label>目标语言 (取自 PPD)</label>
+          <select id="lang"></select>
         </div>
-        <nav aria-label="工具导航">
-          <button class="ghost-button" id="open-config" type="button" title="配置">配置</button>
-          <button class="ghost-button" id="open-help" type="button" title="帮助">帮助</button>
-          <button class="ghost-button" id="open-about" type="button" title="关于">关于</button>
-        </nav>
-      </header>
+        <div style="flex:1;min-width:150px">
+          <label>默认最大显示长度 (字符数, 用于截断风险预警, 0=不限)</label>
+          <input id="maxlen" type="number" min="0" value="0">
+        </div>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <label style="display:inline;margin:0">
+          <input type="checkbox" id="fallbackDefault" checked>
+          PPD 缺目标语言本地化时，回退使用 key 后的默认描述作为其多语言内容
+        </label>
+      </div>
 
-      <main class="workspace">
-        <aside class="printer-panel" aria-label="打印机选择">
-          <div class="panel-heading">
-            <h2>打印机</h2>
-            <div class="printer-heading-tools">
-              <button class="icon-button" id="printer-refresh" type="button" title="刷新打印机列表" aria-label="刷新打印机列表">刷新</button>
-              <span id="printer-count">0</span>
-            </div>
+      <h3>基线 — Excel 多语言总表（无需 JSON）</h3>
+
+      <div style="padding:9px;border:1px solid var(--bd);border-radius:8px;background:#fbfcfd">
+        <div class="muted" style="margin-bottom:6px">导入 Excel 多语言总表作基线（按英文/中文锚点连接当前 PPD）：</div>
+        <div class="row">
+          <button id="btnXlsxFile" class="primary">选择 Excel (.xlsx)…</button>
+          <input id="xlsxFile" type="file" accept=".xlsx" hidden>
+          <span id="xlsxInfo" class="muted"></span>
+        </div>
+        <div class="row" style="margin-top:7px">
+          <div style="flex:2;min-width:150px"><label>工作表</label><select id="xlsxSheet"></select></div>
+          <div style="flex:1;min-width:90px"><label>锚点</label>
+            <select id="xlsxAnchor"><option value="en">英文</option><option value="zh_CN">中文</option></select></div>
+        </div>
+        <div class="row" style="margin-top:7px">
+          <button id="btnGenXlsxBase">用作基线（锚点连接）</button>
+          <span class="muted">目标语言取上方「目标语言」，需先载入测试 PPD</span>
+        </div>
+        <div id="xlsxBaseInfo" class="hint"></div>
+      </div>
+      <div id="baseInfo" class="hint" style="margin-top:6px"></div>
+
+      <details style="margin-top:10px;display:none">
+        <summary class="muted">其他基线来源（JSON / CSV、由 PPD 生成）— 可选</summary>
+        <div class="row" style="margin-top:8px">
+          <button id="btnBaseSample">加载样例基线</button>
+          <label style="display:inline">导入 JSON / CSV：</label>
+          <input id="baseFile" type="file" accept=".json,.csv" hidden>
+          <button id="btnBaseFile">选择文件…</button>
+        </div>
+        <details style="margin-top:8px"><summary class="muted">粘贴基线 (JSON / CSV)</summary>
+          <textarea id="basePaste" placeholder='{"language":"zh_CN","items":[{"key":"Duplex.DuplexNoTumble","standard_text":"长边装订","max_len":8}]}'></textarea>
+          <button id="btnBasePaste" style="margin-top:6px">使用上面的文本</button>
+        </details>
+        <div style="margin-top:10px;padding:9px;border:1px solid var(--bd);border-radius:8px;background:#fbfcfd">
+          <div class="muted" style="margin-bottom:6px">由 PPD 生成基线（采集标准 / 跨版本比对）：</div>
+          <div class="row">
+            <button id="btnBasePpdFile">选择基线 PPD 文件…</button>
+            <input id="baseppdFile" type="file" accept=".ppd,.PPD,text/plain" hidden>
+            <span class="muted">或：左侧把“载入为”切到「基线 PPD」再点选打印机；不选则用当前测试 PPD</span>
           </div>
-          <p class="printer-refresh-status" id="printer-refresh-status">正在读取CUPS打印机...</p>
-          <label class="search-field">
-            <span>搜索</span>
-            <input id="printer-search" type="search" placeholder="名称或型号" autocomplete="off" />
-          </label>
-          <div class="printer-list" id="printer-list"></div>
-        </aside>
+          <div class="row" style="margin-top:7px">
+            <div style="flex:1;min-width:130px"><label>基线 PPD 语言</label><select id="baseLang"></select></div>
+            <button id="btnGenBase" style="align-self:flex-end">生成并用作基线</button>
+            <button id="btnDlBase" style="align-self:flex-end" disabled>下载基线 JSON</button>
+          </div>
+          <div id="basePpdInfo" class="hint"></div>
+        </div>
+      </details>
 
-        <section class="main-panel">
-          <section class="setup-band" aria-label="测试配置">
-            <div class="printer-detail">
-              <div class="printer-mark" id="selected-printer-mark" aria-hidden="true">PP</div>
-              <div>
-                <div class="label">当前对象</div>
-                <h2 id="selected-printer-name">未选择打印机</h2>
-                <p id="selected-printer-meta">请选择左侧打印机，或直接导入PPD后运行测试。</p>
-                <p class="path-line" id="selected-ppd-path">PPD路径：未加载</p>
-              </div>
-            </div>
-
-            <div class="setup-controls">
-              <label>
-                <span>语言</span>
-                <select id="language-select">
-                  <option value="zh_CN">简体中文 zh_CN</option>
-                  <option value="zh_TW">繁体中文 zh_TW</option>
-                  <option value="ja">日语 ja</option>
-                  <option value="ko">韩语 ko</option>
-                  <option value="fr">法语 fr</option>
-                  <option value="de">德语 de</option>
-                  <option value="es">西班牙语 es</option>
-                  <option value="it">意大利语 it</option>
-                  <option value="pt_BR">葡萄牙语 pt_BR</option>
-                  <option value="ru">俄语 ru</option>
-                </select>
-              </label>
-              <button class="primary-button" id="run-test" type="button">开始测试</button>
-              <button class="secondary-button" id="rerun-test" type="button" disabled>重新测试</button>
-              <button class="secondary-button" id="load-sample" type="button">加载样例</button>
-              <button class="secondary-button" id="export-report" type="button" disabled>导出报告</button>
-            </div>
-          </section>
-
-          <section class="file-band" aria-label="文件导入">
-            <div class="drop-zone" id="ppd-drop-zone">
-              <div>
-                <strong>PPD文件</strong>
-                <p id="ppd-file-name">拖拽PPD到这里，或点击选择本地文件。</p>
-              </div>
-              <label class="file-button">
-                选择PPD
-                <input id="ppd-file-input" type="file" accept=".ppd,.txt,text/plain" />
-              </label>
-            </div>
-            <div class="drop-zone" id="standard-drop-zone">
-              <div>
-                <strong>标准内容库</strong>
-                <p id="standard-file-name">支持 Excel / JSON / CSV；未导入时结果会标记为待确认。</p>
-              </div>
-              <label class="file-button">
-                选择标准库
-                <input id="standard-file-input" type="file" accept=".xlsx,.xlsm,.json,.csv,.txt,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel.sheet.macroEnabled.12" />
-              </label>
-            </div>
-          </section>
-
-          <section class="ocr-band" aria-label="OCR截断判断">
-            <div class="ocr-heading">
-              <div>
-                <h2>RapidOCR视觉截断验证</h2>
-                <p id="ocr-status">正在检测OCR环境...</p>
-              </div>
-              <button class="secondary-button" id="run-ocr-test" type="button" disabled>OCR截断判断</button>
-            </div>
-            <div class="ocr-grid">
-              <label>
-                <span>期望完整字符串</span>
-                <input id="ocr-expected-text" type="text" placeholder="输入标准库中的完整字符串" />
-              </label>
-              <label>
-                <span>OCR语言</span>
-                <select id="ocr-language">
-                  <option value="zh_CN">中文</option>
-                  <option value="en">英文</option>
-                  <option value="ja">日文</option>
-                  <option value="ko">韩文</option>
-                  <option value="fr">法文</option>
-                  <option value="de">德文</option>
-                  <option value="es">西班牙文</option>
-                </select>
-              </label>
-              <label class="file-button ocr-file-button">
-                选择控件截图
-                <input id="ocr-image-input" type="file" accept="image/png,image/jpeg,image/webp,image/bmp" />
-              </label>
-              <p class="ocr-file-name" id="ocr-image-name">建议上传单个控件的裁剪图，右边界即控件边界。</p>
-            </div>
-            <div class="ocr-result" id="ocr-result">等待截图和期望字符串。</div>
-          </section>
-
-          <section class="capture-band" aria-label="Linux自动截图比对">
-            <div class="ocr-heading">
-              <div>
-                <h2>Linux自动截图比对</h2>
-                <p id="linux-capture-status">正在检测Linux截图工具...</p>
-              </div>
-              <button class="secondary-button" id="run-linux-capture" type="button" disabled>截图并比对</button>
-            </div>
-            <div class="capture-grid">
-              <label>
-                <span>期望完整字符串</span>
-                <input id="linux-expected-text" type="text" placeholder="输入标准库中的完整字符串" />
-              </label>
-              <label>
-                <span>窗口标题可选</span>
-                <input id="linux-window-title" type="text" placeholder="例如 Print 或 Printer" />
-              </label>
-              <label>
-                <span>x</span>
-                <input id="linux-roi-x" type="number" min="0" value="0" />
-              </label>
-              <label>
-                <span>y</span>
-                <input id="linux-roi-y" type="number" min="0" value="0" />
-              </label>
-              <label>
-                <span>宽</span>
-                <input id="linux-roi-width" type="number" min="1" value="240" />
-              </label>
-              <label>
-                <span>高</span>
-                <input id="linux-roi-height" type="number" min="1" value="48" />
-              </label>
-            </div>
-            <div class="ocr-result" id="linux-capture-result">等待Linux截图参数。</div>
-          </section>
-
-          <section class="summary-band" aria-label="测试摘要">
-            <div class="summary-heading">
-              <div>
-                <h2>测试摘要</h2>
-                <p id="run-meta">尚未运行测试</p>
-              </div>
-              <strong class="overall pending" id="overall-result">待测试</strong>
-            </div>
-            <div class="metric-grid">
-              <div class="metric"><span>总项数</span><strong id="metric-total">0</strong></div>
-              <div class="metric pass"><span>通过</span><strong id="metric-pass">0</strong></div>
-              <div class="metric fail"><span>失败</span><strong id="metric-fail">0</strong></div>
-              <div class="metric warn"><span>警告</span><strong id="metric-warn">0</strong></div>
-            </div>
-          </section>
-
-          <section class="results-band" aria-label="结果明细">
-            <div class="result-tools">
-              <div class="filter-row" id="filter-row" role="tablist" aria-label="结果筛选"></div>
-              <label class="result-search">
-                <span>搜索结果</span>
-                <input id="result-search" type="search" placeholder="Key、内容、备注" />
-              </label>
-            </div>
-
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th data-sort="index">序号</th>
-                    <th data-sort="category">分类</th>
-                    <th data-sort="key">Key</th>
-                    <th data-sort="standardText">标准内容</th>
-                    <th data-sort="actualText">实际内容</th>
-                    <th data-sort="status">状态</th>
-                    <th data-sort="exceptionType">异常类型</th>
-                    <th data-sort="lineNo">行号</th>
-                    <th>备注</th>
-                  </tr>
-                </thead>
-                <tbody id="result-body">
-                  <tr>
-                    <td colspan="9" class="empty-state">暂无测试结果</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-        </section>
-      </main>
+      <div class="sep"></div>
+      <div class="row">
+        <button id="btnRun" class="primary" disabled>开始比对（当前语言）</button>
+        <button id="btnRunAll" disabled>一键比对所有语言</button>
+        <button id="btnExportHtml" disabled>导出 HTML 报告</button>
+        <button id="btnExportMd" disabled>导出 Markdown</button>
+      </div>
+      <div id="runErr" class="err"></div>
     </div>
 
-    <dialog id="detail-dialog" class="app-dialog wide-dialog">
-      <form method="dialog">
-        <header>
-          <h2>结果详情</h2>
-          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
-        </header>
-        <div id="detail-content" class="dialog-content"></div>
-      </form>
-    </dialog>
-
-    <dialog id="config-dialog" class="app-dialog">
-      <form method="dialog" id="config-form">
-        <header>
-          <h2>配置</h2>
-          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
-        </header>
-        <div class="dialog-content config-grid">
-          <label>
-            <span>PPD扫描目录</span>
-            <input id="config-ppd-root" type="text" placeholder="./ppd" />
-          </label>
-          <label>
-            <span>标准库目录</span>
-            <input id="config-standard-root" type="text" placeholder="./standards" />
-          </label>
-          <label>
-            <span>报告输出目录</span>
-            <input id="config-report-root" type="text" placeholder="./reports" />
-          </label>
-          <label>
-            <span>编码优先级</span>
-            <input id="config-encodings" type="text" placeholder="utf-8,gb18030,big5" />
-          </label>
-          <label class="switch-row">
-            <input id="config-ignore-trim" type="checkbox" />
-            <span>忽略首尾空格</span>
-          </label>
-          <label class="switch-row">
-            <input id="config-ignore-case" type="checkbox" />
-            <span>忽略大小写</span>
-          </label>
-          <label>
-            <span>截断字节上限</span>
-            <input id="config-threshold" type="number" min="1" max="200" step="1" />
-          </label>
+    <div class="panel" id="resultPanel" style="margin-top:14px;display:none">
+      <h2>3 · 比对结果</h2>
+      <div id="singleView">
+        <div id="cards" class="cards"></div>
+        <div class="row" style="margin:6px 0">
+          <input id="search" type="text" placeholder="搜索 key / 文本…" style="max-width:280px">
+          <span id="filterState" class="muted"></span>
         </div>
-        <footer>
-          <button class="ghost-button" id="reset-config" type="button">重置默认</button>
-          <button class="primary-button" value="default" type="submit">保存</button>
-        </footer>
-      </form>
-    </dialog>
-
-    <dialog id="export-dialog" class="app-dialog">
-      <form method="dialog">
-        <header>
-          <h2>导出报告</h2>
-          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
-        </header>
-        <div class="dialog-content export-box">
-          <label>
-            <span>报告格式</span>
-            <select id="export-format">
-              <option value="markdown">Markdown</option>
-              <option value="html">HTML</option>
-            </select>
-          </label>
-          <label>
-            <span>文件名</span>
-            <input id="export-filename" type="text" />
-          </label>
-          <p id="export-hint">浏览器版会通过下载保存报告。</p>
+        <div style="max-height:60vh;overflow:auto;border:1px solid var(--bd);border-radius:8px">
+          <table id="tbl">
+            <thead><tr>
+              <th style="width:22%">Key</th><th>基线文本</th><th>PPD 文本 (目标语言)</th>
+              <th style="width:90px">状态</th><th style="width:24%">说明</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
         </div>
-        <footer>
-          <button class="primary-button" id="confirm-export" type="button">导出</button>
-        </footer>
-      </form>
-    </dialog>
+      </div>
+      <div id="multiView" style="display:none"></div>
+    </div>
+  </div>
+</div>
 
-    <dialog id="help-dialog" class="app-dialog wide-dialog">
-      <form method="dialog">
-        <header>
-          <h2>帮助</h2>
-          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
-        </header>
-        <div class="dialog-content help-copy">
-          <h3>操作步骤</h3>
-          <p>选择打印机和语言，导入PPD文件，可选导入标准内容库，然后点击开始测试。结果表支持筛选、搜索、排序和详情查看。</p>
-          <h3>标准库格式</h3>
-          <p>Excel标准库建议包含 <code>PPD Key</code> 列和当前语言列，例如 <code>中文</code>、<code>繁体中文(zh_TW)</code>、<code>英语(en)</code>。JSON可使用 <code>{"items":[{"key":"PageSize.A4","standard_text":"A4"}]}</code>，CSV建议包含 <code>key</code> 与 <code>standard_text</code> 列。</p>
-          <h3>异常类型</h3>
-          <p>工具会识别缺失、截断、乱码、格式异常、错误翻译、多余内容和待人工确认。选择本机打印机时会从 CUPS 队列关联的本地 PPD 提取内容，也可以手动导入 PPD 文件。</p>
-          <h3>OCR截断验证</h3>
-          <p>工具优先使用轻量级 RapidOCR。请上传单个控件的裁剪截图并输入完整期望字符串，工具会结合 OCR 文本、识别框是否贴近右边界、省略号和置信度判断视觉截断。</p>
-        </div>
-      </form>
-    </dialog>
+<script>
+// ====================================================================
+//  PPD 解析
+// ====================================================================
+// 英文(默认)字段:
+//   *OpenUI *Duplex/Two-Sided: PickOne        -> 选项标签  key=Duplex
+//   *Duplex DuplexNoTumble/Long-Edge: "..."   -> 选项值    key=Duplex.DuplexNoTumble
+// 本地化字段(语言前缀):
+//   *zh_CN.Translation Duplex/双面打印: ""        -> 选项标签 key=Duplex
+//   *zh_CN.Duplex DuplexNoTumble/长边装订: ""     -> 选项值   key=Duplex.DuplexNoTumble
+const RE = {
+  openui:  /^\*OpenUI\s+\*([\w.]+)\/(.*?):\s*PickOne/i,
+  jclui:   /^\*JCLOpenUI\s+\*([\w.]+)\/(.*?):\s*PickOne/i,
+  loc_tr:  /^\*([A-Za-z]{2}(?:_[A-Za-z]{2})?)\.Translation\s+([\w.]+)\/(.*?):/,
+  loc_ch:  /^\*([A-Za-z]{2}(?:_[A-Za-z]{2})?)\.([\w.]+)\s+(\S+)\/(.*?):/,
+  en_ch:   /^\*([\w.]+)\s+(\S+)\/(.*?):/,
+};
+const META_KW = new Set(['OpenUI','CloseUI','OpenGroup','CloseGroup','JCLOpenUI','JCLCloseUI',
+  'Translation','OrderDependency','UIConstraints','NonUIConstraints','Include','Font','Product']);
 
-    <dialog id="about-dialog" class="app-dialog">
-      <form method="dialog">
-        <header>
-          <h2>关于</h2>
-          <button class="icon-button" value="cancel" title="关闭" type="submit">×</button>
-        </header>
-        <div class="dialog-content help-copy">
-          <p><strong>PPD本地化测试工具 Web V1.0</strong></p>
-          <p>根据《PPD本地化测试工具需求合集》实现，覆盖单文件测试、字段提取、标准比对、异常识别、结果展示和报告导出。</p>
-        </div>
-      </form>
-    </dialog>
+function parsePPD(text){
+  const lines = text.split(/\r?\n/);
+  // entries: key -> { en, loc: {lang:text} }
+  const entries = new Map();
+  const langs = new Set();
+  const ensure = k => { if(!entries.has(k)) entries.set(k,{en:null,loc:{}}); return entries.get(k); };
 
-    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
-    <script src="./app.js?v=2"></script>
-  </body>
+  for(let raw of lines){
+    const line = raw.trim();
+    if(!line.startsWith('*')) continue;
+
+    let m;
+    if((m = line.match(RE.openui)) || (m = line.match(RE.jclui))){
+      ensure(m[1]).en = unesc(m[2]); continue;
+    }
+    if((m = line.match(RE.loc_tr))){
+      const [,lang,key,txt] = m; langs.add(lang); ensure(key).loc[lang] = unesc(txt); continue;
+    }
+    if((m = line.match(RE.loc_ch))){
+      const [,lang,key,choice,txt] = m;
+      if(key==='Translation') continue;            // 已由 loc_tr 处理
+      langs.add(lang); ensure(key+'.'+choice).loc[lang] = unesc(txt); continue;
+    }
+    if((m = line.match(RE.en_ch))){
+      let [,key,choice,txt] = m;
+      if(META_KW.has(key)) continue;
+      if(key.includes('.')) continue;              // 语言前缀的留给上面规则
+      ensure(key+'.'+choice).en = unesc(txt); continue;
+    }
+  }
+  return {entries, langs:[...langs].sort()};
+}
+function unesc(s){
+  // PPD 文本可能含 <HEXHEX> 转义 (UTF-8 字节)
+  if(/<[0-9a-fA-F ]+>/.test(s)){
+    s = s.replace(/<([0-9a-fA-F ]+)>/g, (_,h)=>{
+      const bytes = h.replace(/\s/g,'').match(/.{2}/g)||[];
+      try{ return decodeURIComponent(bytes.map(b=>'%'+b).join('')); }catch(e){ return _; }
+    });
+  }
+  return s.replace(/^"|"$/g,'').trim();
+}
+
+// ====================================================================
+//  基线解析 (JSON / CSV)
+// ====================================================================
+function parseBaseline(text){
+  text = text.trim();
+  if(text.startsWith('{') || text.startsWith('[')){
+    const o = JSON.parse(text);
+    const items = Array.isArray(o) ? o : (o.items||[]);
+    return { language:o.language||null,
+             items: items.map(it=>({key:it.key, standard_text:it.standard_text??it.text??'', max_len:it.max_len??it.maxlen??null})) };
+  }
+  // CSV: 首行表头 key,standard_text[,max_len]
+  const rows = text.split(/\r?\n/).filter(l=>l.trim());
+  const head = rows.shift().split(',').map(s=>s.trim().toLowerCase());
+  const ki=head.indexOf('key'), ti=head.findIndex(h=>h==='standard_text'||h==='text'), mi=head.indexOf('max_len');
+  return { language:null, items: rows.map(r=>{
+    const c = splitCsv(r);
+    return { key:(c[ki]||'').trim(), standard_text:(c[ti]||'').trim(), max_len: mi>=0&&c[mi]?+c[mi]:null };
+  }).filter(x=>x.key) };
+}
+function splitCsv(line){
+  const out=[]; let cur='',q=false;
+  for(let i=0;i<line.length;i++){ const ch=line[i];
+    if(q){ if(ch==='"'){ if(line[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=ch; }
+    else { if(ch===','){out.push(cur);cur='';} else if(ch==='"'){q=true;} else cur+=ch; } }
+  out.push(cur); return out;
+}
+
+// ====================================================================
+//  截断 / 一致性 判定
+// ====================================================================
+function cps(s){ return [...s]; }                 // 按码点计数, 兼容中文
+function stripEllipsis(s){ return s.replace(/(\.{3}|…)\s*$/,''); }
+const hasEllipsis = s => /(\.{3}|…)\s*$/.test(s);
+const garbled = s => /�/.test(s) || /\?{2,}/.test(s) || /[-]/.test(s);
+
+function classify(base, ppd, maxLen){
+  if(ppd==null || ppd==='') return {status:'missing', note:'PPD 目标语言中未找到该项'};
+  if(garbled(ppd)) return {status:'garbled', note:'疑似乱码 / 编码异常'};
+
+  const over = maxLen && cps(ppd).length > maxLen;
+  if(base==null){
+    return over ? {status:'maxlen', note:`长度 ${cps(ppd).length} > 上限 ${maxLen}`} : {status:'extra', note:'基线中无此项'};
+  }
+  if(ppd === base){
+    return over ? {status:'maxlen', note:`与基线一致, 但长度 ${cps(ppd).length} > 上限 ${maxLen}`}
+                : {status:'match', note:''};
+  }
+  // 截断: 结尾省略号, 且去掉省略号后是基线前缀
+  const core = stripEllipsis(ppd);
+  if(hasEllipsis(ppd) && base.startsWith(core))
+    return {status:'truncated', note:'结尾省略号且为基线前缀, 判定为截断'};
+  // 截断: PPD 是基线的前缀且更短
+  if(base.startsWith(ppd) && cps(ppd).length < cps(base).length)
+    return {status:'truncated', note:`内容不完整: 仅为基线前 ${cps(ppd).length}/${cps(base).length} 字符`};
+  if(over) return {status:'maxlen', note:`长度 ${cps(ppd).length} > 上限 ${maxLen}, 且与基线不符`};
+  return {status:'mismatch', note:'与基线文本不一致 (错误翻译 / 内容不同)'};
+}
+
+// ====================================================================
+//  比对主流程
+// ====================================================================
+const ST = {
+  match:'一致', truncated:'截断', mismatch:'不一致', missing:'缺失',
+  garbled:'乱码', maxlen:'超长预警', extra:'多余',
+};
+let STATE = { ppd:null, parsed:null, baseline:null, results:[], filter:null, mode:'single', multi:null, xlsx:null };
+
+// 用一组基线项(已按 key 组织)对某语言比对 PPD, 返回结果行
+function classifyAgainstPPD(items, lang){
+  const ent = STATE.parsed.entries;
+  const maxDefault = +el('maxlen').value || 0;
+  const useFallback = el('fallbackDefault').checked;
+  const baseMap = new Map(items.map(it=>[it.key, it]));
+  const rows = [];
+  for(const it of items){
+    const e = ent.get(it.key);
+    const enText = e ? e.en : null;
+    let ppdText = e ? (e.loc[lang] ?? null) : null;
+    let fellBack = false;
+    if(ppdText==null && useFallback && enText){ ppdText = enText; fellBack = true; }
+    const maxLen = it.max_len || maxDefault;
+    const r = classify(it.standard_text, ppdText, maxLen);
+    if(fellBack) r.note = (r.note ? r.note + ' · ' : '') + '回退默认描述（PPD 未本地化）';
+    rows.push({key:it.key, base:it.standard_text, ppd:ppdText, en:enText, maxLen, fellBack, ...r});
+  }
+  // PPD 中有本地化、但基线未覆盖的项 -> 多余 (提示)
+  for(const [key,e] of ent){
+    if(baseMap.has(key)) continue;
+    const ppdText = e.loc[lang];
+    if(ppdText==null) continue;
+    const r = classify(null, ppdText, maxDefault);
+    rows.push({key, base:null, ppd:ppdText, en:e.en, maxLen:maxDefault, ...r});
+  }
+  return rows;
+}
+
+// 从 Excel 某工作表 + 锚点, 为某目标语言合成基线项(锚点连接当前 PPD)
+function buildXlsxItems(sheet, anchor, lang){
+  const exTarget = resolveExcelLang(lang, sheet.languages);
+  if(!exTarget) return null;
+  const norm = s => (s==null?'':String(s)).replace(/\s+/g,' ').trim();
+  const map = new Map();
+  for(const row of sheet.rows){
+    const akey = norm(anchor==='en' ? row.en : row.zh);
+    if(!akey) continue;
+    map.set(akey, {tt: row.texts[exTarget]!=null ? norm(row.texts[exTarget]) : null, limit: row.limit||0});
+  }
+  const items=[]; let matched=0, noTrans=0; const used=new Set();
+  for(const [key,e] of STATE.parsed.entries){
+    const atext = norm(anchor==='en' ? e.en : (e.loc['zh_CN']||''));
+    if(!atext) continue;
+    const hit = map.get(atext);
+    if(!hit) continue;
+    matched++; used.add(atext);
+    if(hit.tt==null || hit.tt===''){ noTrans++; continue; }
+    items.push({key, standard_text:hit.tt, max_len:hit.limit||0});
+  }
+  return {items, matched, noTrans, used:used.size, exTarget, rowsTotal:sheet.rows.length};
+}
+
+function runCompare(){
+  const lang = el('lang').value;
+  if(!STATE.parsed){ return showRunErr('请先获取或导入 PPD'); }
+  if(!lang){ return showRunErr('该 PPD 未发现可用的本地化语言'); }
+  // Excel 基线按目标语言生成: 语言切换后, 用新语言重建后再比对
+  if(STATE.baselineSource==='xlsx' && STATE.xlsx && (!STATE.baseline || STATE.baseline.language!==lang)){
+    genBaseFromXlsx();
+    if(!STATE.baseline || STATE.baseline.language!==lang) return;   // 重建失败(如该语言无列), 错误已提示
+  }
+  if(!STATE.baseline){ return showRunErr('请先准备基线：导入 Excel 总表并点「用作基线」（无需 JSON）／或导入 JSON·CSV／或由 PPD 生成'); }
+  if(!STATE.baseline.items.length){ return showRunErr('基线为空：Excel 锚点未命中任何 PPD 条目，请检查工作表/锚点（英文↔中文）或确认 PPD 已载入'); }
+  showRunErr('');
+  if(STATE.baselineSource!=='xlsx' && STATE.baseline.language && STATE.baseline.language!==lang){
+    showRunErr(`提示：当前基线语言为 ${STATE.baseline.language}，与目标语言 ${lang} 不同，结果可能不准确`);
+  }
+  STATE.results = classifyAgainstPPD(STATE.baseline.items, lang);
+  STATE.filter = null; STATE.mode = 'single';
+  el('resultPanel').style.display='';
+  el('singleView').style.display=''; el('multiView').style.display='none';
+  renderResults();
+  el('btnExportHtml').disabled = el('btnExportMd').disabled = false;
+}
+
+// 一键比对该工作表的所有语言(锚点列除外)
+function runCompareAll(){
+  if(!STATE.parsed){ return showRunErr('请先获取或导入 PPD'); }
+  if(!STATE.xlsx){ return showRunErr('「比对所有语言」需先导入 Excel 总表'); }
+  const sheetName = el('xlsxSheet').value, anchor = el('xlsxAnchor').value;
+  const sheet = STATE.xlsx.sheets.find(s=>s.name===sheetName);
+  if(!sheet){ return showRunErr('未找到工作表 '+sheetName); }
+  showRunErr('');
+  const targets = sheet.languages.filter(l=>l!==anchor);   // 锚点语言不作目标
+  const perLang = [];
+  for(const L of targets){
+    const b = buildXlsxItems(sheet, anchor, L);
+    if(!b || !b.items.length){ perLang.push({lang:L, skipped:true, matched:b?b.matched:0}); continue; }
+    const rows = classifyAgainstPPD(b.items, L);
+    const c = {}; for(const k in ST) c[k]=0; rows.forEach(r=>c[r.status]++);
+    perLang.push({lang:L, rows, counts:c, matched:b.matched, noTrans:b.noTrans});
+  }
+  STATE.mode = 'multi';
+  STATE.multi = {sheet:sheetName, anchor, langs:perLang};
+  el('resultPanel').style.display='';
+  el('singleView').style.display='none'; el('multiView').style.display='';
+  renderMultiResults();
+  el('btnExportHtml').disabled = el('btnExportMd').disabled = false;
+}
+
+// 把状态计数里“错误”项(截断/不一致/缺失/乱码)汇总
+function errCount(c){ return (c.truncated||0)+(c.mismatch||0)+(c.missing||0)+(c.garbled||0); }
+
+function renderMultiResults(){
+  const m = STATE.multi;
+  const active = m.langs.filter(l=>!l.skipped);
+  const skipped = m.langs.filter(l=>l.skipped);
+  const passed = active.filter(l=>errCount(l.counts)===0).length;
+  const totalErr = active.reduce((a,l)=>a+errCount(l.counts), 0);
+  const cols = ['match','truncated','mismatch','missing','garbled','maxlen','extra'];
+
+  let h = '';
+  h += `<div class="cards">
+    <div class="card"><div class="n">${active.length}</div><div class="l">比对语言数</div></div>
+    <div class="card"><div class="n">${passed}</div><div class="l">全部通过</div></div>
+    <div class="card"><div class="n">${active.length-passed}</div><div class="l">有问题语言</div></div>
+    <div class="card"><div class="n">${totalErr}</div><div class="l">错误项合计</div></div>
+    ${skipped.length?`<div class="card"><div class="n">${skipped.length}</div><div class="l">跳过(无列/未命中)</div></div>`:''}
+  </div>`;
+  h += `<div class="muted" style="margin:2px 0 8px">工作表 <b>${esc(m.sheet)}</b> · 锚点 ${m.anchor==='en'?'英文':'中文'} · 错误=截断+不一致+缺失+乱码（超长/多余为提示）</div>`;
+
+  // 总体概述表
+  h += `<h3>总体概述（按语言）</h3>`;
+  h += `<table><thead><tr><th>语言</th><th>命中</th>`+cols.map(k=>`<th>${ST[k]}</th>`).join('')+`<th>结论</th></tr></thead><tbody>`;
+  for(const l of m.langs){
+    if(l.skipped){ h += `<tr><td><code>${esc(l.lang)}</code></td><td class="muted" colspan="${cols.length+2}">跳过：Excel 无该列或锚点未命中（命中 ${l.matched||0}）</td></tr>`; continue; }
+    const err = errCount(l.counts);
+    const verdict = err===0 ? '<span class="tag t-match">通过</span>' : `<span class="tag t-mismatch">${err} 问题</span>`;
+    h += `<tr><td><code>${esc(l.lang)}</code></td><td class="muted">${l.matched}</td>`+
+         cols.map(k=>`<td>${l.counts[k]||''}</td>`).join('')+`<td>${verdict}</td></tr>`;
+  }
+  h += `</tbody></table>`;
+
+  // 分语言明细(仅列具体错误项)
+  h += `<h3 style="margin-top:14px">分语言明细（仅列错误项）</h3>`;
+  for(const l of active){
+    const err = errCount(l.counts);
+    const prob = l.rows.filter(r=>r.status!=='match' && r.status!=='extra');
+    h += `<details style="margin:6px 0;border:1px solid var(--bd);border-radius:6px;padding:6px 10px"${err?' open':''}>
+      <summary><b>${esc(l.lang)}</b> — ${err?`<span style="color:var(--err)">${err} 问题</span>`:'<span style="color:var(--ok)">通过</span>'}
+      <span class="muted">· 一致 ${l.counts.match} 截断 ${l.counts.truncated} 不一致 ${l.counts.mismatch} 缺失 ${l.counts.missing} 乱码 ${l.counts.garbled} 超长 ${l.counts.maxlen}</span></summary>
+      <table style="margin-top:6px"><thead><tr><th style="width:22%">Key</th><th>基线</th><th>PPD</th><th style="width:80px">状态</th><th>说明</th></tr></thead><tbody>`;
+    if(!prob.length){ h += `<tr><td colspan="5" class="muted">无错误项（全部一致）</td></tr>`; }
+    for(const r of prob){
+      h += `<tr><td><code>${esc(r.key)}</code></td><td><code>${esc(r.base??'—')}</code></td><td><code>${esc(r.ppd??'—')}</code></td>
+        <td><span class="tag t-${r.status}">${ST[r.status]}</span></td><td class="muted">${esc(r.note)}</td></tr>`;
+    }
+    h += `</tbody></table></details>`;
+  }
+  el('multiView').innerHTML = h;
+}
+
+function counts(){
+  const c={};
+  for(const k in ST) c[k]=0;
+  STATE.results.forEach(r=>c[r.status]++);
+  return c;
+}
+
+function renderResults(){
+  const c = counts();
+  const order = ['match','truncated','mismatch','missing','garbled','maxlen','extra'];
+  el('cards').innerHTML = order.map(k=>
+    `<div class="card ${STATE.filter===k?'act':''}" data-k="${k}"><div class="n">${c[k]||0}</div><div class="l">${ST[k]}</div></div>`
+  ).join('');
+  document.querySelectorAll('.card').forEach(d=>d.onclick=()=>{
+    STATE.filter = STATE.filter===d.dataset.k ? null : d.dataset.k; renderResults();
+  });
+
+  const q = el('search').value.trim().toLowerCase();
+  const rows = STATE.results.filter(r=>{
+    if(STATE.filter && r.status!==STATE.filter) return false;
+    if(q && !((r.key||'').toLowerCase().includes(q) || (r.base||'').toLowerCase().includes(q) || (r.ppd||'').toLowerCase().includes(q))) return false;
+    return true;
+  });
+  el('filterState').textContent = `显示 ${rows.length} / ${STATE.results.length} 项` + (STATE.filter?` · 筛选: ${ST[STATE.filter]}`:'');
+
+  const tb = document.querySelector('#tbl tbody');
+  tb.innerHTML = rows.map(r=>{
+    const ppd = r.ppd==null ? '<span class="muted">—</span>' : `<code>${esc(r.ppd)}</code>`;
+    const base = r.base==null ? '<span class="muted">—</span>' : `<code>${esc(r.base)}</code>`;
+    return `<tr><td><code>${esc(r.key)}</code></td><td>${base}</td><td>${ppd}</td>
+      <td><span class="tag t-${r.status}">${ST[r.status]}</span></td><td class="muted">${esc(r.note)}</td></tr>`;
+  }).join('') || `<tr><td colspan="5" class="muted" style="padding:14px">无匹配项</td></tr>`;
+}
+
+// ====================================================================
+//  报告导出
+// ====================================================================
+function reportRows(){ return STATE.results; }
+const RPT_CSS = `<style>body{font-family:-apple-system,"Microsoft YaHei",Arial,sans-serif;margin:24px;color:#1f2328}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{border:1px solid #d0d7de;padding:6px 9px;text-align:left}
+  th{background:#f6f8fa}.tag{padding:1px 8px;border-radius:9px;font-size:12px;font-weight:600}
+  .match{color:#1a7f37}.truncated,.mismatch,.garbled{color:#cf222e}.missing,.maxlen{color:#9a6700}.extra{color:#0969da}
+  details{border:1px solid #d0d7de;border-radius:6px;padding:6px 10px;margin:6px 0}code{font-family:Consolas,monospace}</style>`;
+
+function exportHtml(){ STATE.mode==='multi' ? exportHtmlMulti() : exportHtmlSingle(); }
+function exportMd(){ STATE.mode==='multi' ? exportMdMulti() : exportMdSingle(); }
+
+function exportHtmlSingle(){
+  const c = counts(); const lang = el('lang').value;
+  const head = `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>PPD 本地化测试报告</title>${RPT_CSS}</head><body>`;
+  const summary = `<h1>PPD 本地化测试报告</h1>
+  <p>来源: ${esc(STATE.ppd?.label||'—')} · 目标语言: <b>${esc(lang)}</b> · 生成: ${new Date().toLocaleString()}</p>
+  <p>一致 ${c.match} · <b style="color:#cf222e">截断 ${c.truncated}</b> · 不一致 ${c.mismatch} · 缺失 ${c.missing} · 乱码 ${c.garbled} · 超长预警 ${c.maxlen} · 多余 ${c.extra}</p>`;
+  const rows = reportRows().map(r=>`<tr><td><code>${esc(r.key)}</code></td><td>${esc(r.base??'—')}</td>
+    <td>${esc(r.ppd??'—')}</td><td><span class="tag ${r.status}">${ST[r.status]}</span></td><td>${esc(r.note)}</td></tr>`).join('');
+  const html = head+summary+`<table><thead><tr><th>Key</th><th>基线文本</th><th>PPD 文本</th><th>状态</th><th>说明</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
+  download('ppd-localization-report.html', html, 'text/html');
+}
+function exportMdSingle(){
+  const c = counts(); const lang = el('lang').value;
+  let md = `# PPD 本地化测试报告\n\n来源: ${STATE.ppd?.label||'—'} · 目标语言: **${lang}** · 生成: ${new Date().toLocaleString()}\n\n`;
+  md += `一致 ${c.match} · **截断 ${c.truncated}** · 不一致 ${c.mismatch} · 缺失 ${c.missing} · 乱码 ${c.garbled} · 超长预警 ${c.maxlen} · 多余 ${c.extra}\n\n`;
+  md += `| Key | 基线文本 | PPD 文本 | 状态 | 说明 |\n|---|---|---|---|---|\n`;
+  reportRows().forEach(r=>{ md += `| ${r.key} | ${r.base??'—'} | ${r.ppd??'—'} | ${ST[r.status]} | ${r.note} |\n`; });
+  download('ppd-localization-report.md', md, 'text/markdown');
+}
+
+function exportHtmlMulti(){
+  const m = STATE.multi, active = m.langs.filter(l=>!l.skipped);
+  const passed = active.filter(l=>errCount(l.counts)===0).length;
+  const totalErr = active.reduce((a,l)=>a+errCount(l.counts),0);
+  const cols = ['match','truncated','mismatch','missing','garbled','maxlen','extra'];
+  let h = `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>PPD 本地化测试报告（全语言）</title>${RPT_CSS}</head><body>`;
+  h += `<h1>PPD 本地化测试报告（全语言）</h1>
+  <p>来源: ${esc(STATE.ppd?.label||'—')} · 工作表 <b>${esc(m.sheet)}</b> · 锚点 ${m.anchor==='en'?'英文':'中文'} · 生成: ${new Date().toLocaleString()}</p>`;
+  // 总体概述
+  h += `<h2>一、总体概述</h2><p>比对语言 ${active.length} · 全部通过 <b style="color:#1a7f37">${passed}</b> · 有问题 <b style="color:#cf222e">${active.length-passed}</b> · 错误项合计 <b>${totalErr}</b></p>`;
+  h += `<table><thead><tr><th>语言</th><th>命中</th>`+cols.map(k=>`<th>${ST[k]}</th>`).join('')+`<th>结论</th></tr></thead><tbody>`;
+  for(const l of m.langs){
+    if(l.skipped){ h += `<tr><td>${esc(l.lang)}</td><td colspan="${cols.length+2}">跳过（Excel 无该列或锚点未命中）</td></tr>`; continue; }
+    const err = errCount(l.counts);
+    h += `<tr><td>${esc(l.lang)}</td><td>${l.matched}</td>`+cols.map(k=>`<td>${l.counts[k]||''}</td>`).join('')+
+         `<td class="${err?'mismatch':'match'}">${err?err+' 问题':'通过'}</td></tr>`;
+  }
+  h += `</tbody></table>`;
+  // 分语言明细
+  h += `<h2>二、分语言明细（仅列错误项）</h2>`;
+  for(const l of active){
+    const err = errCount(l.counts);
+    const prob = l.rows.filter(r=>r.status!=='match' && r.status!=='extra');
+    h += `<details${err?' open':''}><summary><b>${esc(l.lang)}</b> — ${err?'<span class="mismatch">'+err+' 问题</span>':'<span class="match">通过</span>'}</summary>`;
+    h += `<table><thead><tr><th>Key</th><th>基线</th><th>PPD</th><th>状态</th><th>说明</th></tr></thead><tbody>`;
+    if(!prob.length) h += `<tr><td colspan="5">无错误项（全部一致）</td></tr>`;
+    for(const r of prob) h += `<tr><td><code>${esc(r.key)}</code></td><td>${esc(r.base??'—')}</td><td>${esc(r.ppd??'—')}</td><td class="${r.status}">${ST[r.status]}</td><td>${esc(r.note)}</td></tr>`;
+    h += `</tbody></table></details>`;
+  }
+  h += `</body></html>`;
+  download('ppd-localization-all-languages.html', h, 'text/html');
+}
+function exportMdMulti(){
+  const m = STATE.multi, active = m.langs.filter(l=>!l.skipped);
+  const passed = active.filter(l=>errCount(l.counts)===0).length;
+  const totalErr = active.reduce((a,l)=>a+errCount(l.counts),0);
+  const cols = ['match','truncated','mismatch','missing','garbled','maxlen','extra'];
+  let md = `# PPD 本地化测试报告（全语言）\n\n来源: ${STATE.ppd?.label||'—'} · 工作表 **${m.sheet}** · 锚点 ${m.anchor==='en'?'英文':'中文'} · 生成: ${new Date().toLocaleString()}\n\n`;
+  md += `## 一、总体概述\n\n比对语言 ${active.length} · 全部通过 ${passed} · 有问题 ${active.length-passed} · 错误项合计 ${totalErr}\n\n`;
+  md += `| 语言 | 命中 | ${cols.map(k=>ST[k]).join(' | ')} | 结论 |\n|`+'---|'.repeat(cols.length+3)+`\n`;
+  for(const l of m.langs){
+    if(l.skipped){ md += `| ${l.lang} | — | ${cols.map(()=>'—').join(' | ')} | 跳过 |\n`; continue; }
+    const err = errCount(l.counts);
+    md += `| ${l.lang} | ${l.matched} | ${cols.map(k=>l.counts[k]||0).join(' | ')} | ${err?err+' 问题':'通过'} |\n`;
+  }
+  md += `\n## 二、分语言明细（仅列错误项）\n\n`;
+  for(const l of active){
+    const prob = l.rows.filter(r=>r.status!=='match' && r.status!=='extra');
+    md += `### ${l.lang} — ${errCount(l.counts)?errCount(l.counts)+' 问题':'通过'}\n\n`;
+    if(!prob.length){ md += `（全部一致）\n\n`; continue; }
+    md += `| Key | 基线 | PPD | 状态 | 说明 |\n|---|---|---|---|---|\n`;
+    for(const r of prob) md += `| ${r.key} | ${r.base??'—'} | ${r.ppd??'—'} | ${ST[r.status]} | ${r.note} |\n`;
+    md += `\n`;
+  }
+  download('ppd-localization-all-languages.md', md, 'text/markdown');
+}
+
+// ====================================================================
+//  UI 装配
+// ====================================================================
+const el = id => document.getElementById(id);
+const esc = s => (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const showRunErr = m => el('runErr').textContent = m||'';
+function download(name, text, type){
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type}));
+  a.download=name; a.click(); URL.revokeObjectURL(a.href);
+}
+
+function setPPD(text, label, role){
+  role = role || 'test';
+  if(role==='base'){
+    STATE.basePPD = {text, label, parsed: parsePPD(text)};
+    el('basePpdInfo').innerHTML = `基线 PPD: <b>${esc(label)}</b> · 条目 ${STATE.basePPD.parsed.entries.size} · 语言 [${STATE.basePPD.parsed.langs.join(', ')||'无'}]`;
+    refreshBaseLang();
+    return;
+  }
+  STATE.ppd = {text, label};
+  STATE.parsed = parsePPD(text);
+  const sel = el('lang');
+  sel.innerHTML = STATE.parsed.langs.map(l=>`<option value="${l}">${l}</option>`).join('')
+                || '<option value="">(未发现本地化语言)</option>';
+  // 若基线声明了语言, 自动选中
+  if(STATE.baseline?.language && STATE.parsed.langs.includes(STATE.baseline.language)) sel.value = STATE.baseline.language;
+  el('ppdInfo').innerHTML = `已载入测试 PPD: <b>${esc(label)}</b> · 条目 ${STATE.parsed.entries.size} · 语言 [${STATE.parsed.langs.join(', ')||'无'}]`;
+  el('btnRun').disabled = false;
+  el('btnRunAll').disabled = false;
+  refreshBaseLang();
+}
+
+// 基线 PPD 语言下拉: 优先用单独载入的基线 PPD, 否则用当前测试 PPD
+function refreshBaseLang(){
+  const src = STATE.basePPD?.parsed || STATE.parsed;
+  const sel = el('baseLang');
+  const langs = src ? src.langs : [];
+  sel.innerHTML = langs.map(l=>`<option value="${l}">${l}</option>`).join('') || '<option value="">(先载入 PPD)</option>';
+  if(STATE.baseline?.language && langs.includes(STATE.baseline.language)) sel.value = STATE.baseline.language;
+}
+
+// 由 PPD 的某语言本地化内容生成基线(标准内容库)
+function genBaseFromPPD(){
+  const src = STATE.basePPD?.parsed || STATE.parsed;
+  const srcLabel = STATE.basePPD?.label || STATE.ppd?.label || 'PPD';
+  const lang = el('baseLang').value;
+  if(!src) return showRunErr('请先载入基线 PPD(或当前测试 PPD)');
+  if(!lang) return showRunErr('请选择基线 PPD 语言');
+  const items = [];
+  for(const [key,e] of src.entries){ const t = e.loc[lang]; if(t!=null && t!=='') items.push({key, standard_text:t}); }
+  STATE.baseline = {language:lang, items, model:srcLabel};
+  STATE.baselineSource = 'ppd';
+  el('baseInfo').innerHTML = `已由 PPD 生成基线: <b>${esc(srcLabel)} · ${lang}</b> · ${items.length} 项`;
+  el('btnDlBase').disabled = items.length===0;
+  showRunErr('');
+}
+function dlBaseline(){
+  if(!STATE.baseline) return;
+  const obj = {printer_model: STATE.baseline.model||'', language: STATE.baseline.language||'',
+               items: STATE.baseline.items.map(it=>({key:it.key, standard_text:it.standard_text, ...(it.max_len?{max_len:it.max_len}:{})}))};
+  download('baseline.'+(STATE.baseline.language||'export')+'.json', JSON.stringify(obj,null,1), 'application/json');
+}
+
+// ---- Excel 多语言总表作基线 ----
+async function importXlsx(file){
+  el('xlsxInfo').textContent = '解析中…';
+  try{
+    const buf = await file.arrayBuffer();
+    const r = await fetch('/api/xlsx', {method:'POST', headers:{'Content-Type':'application/octet-stream'}, body:buf});
+    const j = await r.json();
+    if(!r.ok) throw new Error(j.error||r.status);
+    STATE.xlsx = j;
+    const sel = el('xlsxSheet');
+    sel.innerHTML = j.sheets.map(s=>`<option value="${esc(s.name)}">${esc(s.name)} (${s.languages.length}语言·${s.rows.length}行${s.has_limit?'·有字符限制':''})</option>`).join('');
+    // 默认选 LP6224驱动(若存在)
+    const def = j.sheets.find(s=>s.name.includes('LP6224'));
+    if(def) sel.value = def.name;
+    el('xlsxInfo').innerHTML = `已载入 Excel: <b>${esc(file.name)}</b> · ${j.sheets.length} 个工作表`;
+  }catch(e){ el('xlsxInfo').innerHTML = `<span class="err">解析失败(需经 server.py): ${esc(e.message)}</span>`; }
+}
+
+// 把 PPD 目标语言码解析成 Excel 列码(精确→区域前缀兜底)
+function resolveExcelLang(target, langs){
+  if(langs.includes(target)) return target;
+  const base = target.split(/[_-]/)[0];
+  if(langs.includes(base)) return base;
+  const hit = langs.find(l=>l.split(/[_-]/)[0]===base);
+  return hit || null;
+}
+
+function genBaseFromXlsx(){
+  if(!STATE.xlsx) return showRunErr('请先导入 Excel 总表');
+  if(!STATE.parsed) return showRunErr('请先载入测试 PPD(锚点连接需要 PPD 的英文/中文与目标语言文本)');
+  const sheetName = el('xlsxSheet').value;
+  const anchor = el('xlsxAnchor').value;            // 'en' | 'zh_CN'
+  const target = el('lang').value;                  // PPD 目标语言
+  if(!target) return showRunErr('请先选择目标语言(上方「目标语言」)');
+  const sheet = STATE.xlsx.sheets.find(s=>s.name===sheetName);
+  if(!sheet) return showRunErr('未找到工作表 '+sheetName);
+  const b = buildXlsxItems(sheet, anchor, target);
+  if(!b) return showRunErr(`Excel 工作表「${sheetName}」中没有目标语言 ${target} 的列`);
+
+  STATE.baseline = {language:target, items:b.items, model:`${sheetName}·${anchor==='en'?'英文':'中文'}锚点`};
+  STATE.baselineSource = 'xlsx';
+  el('baseInfo').innerHTML = `已由 Excel 生成基线: <b>${esc(sheetName)} → ${esc(target)}</b> · ${b.items.length} 项`;
+  el('btnDlBase').disabled = b.items.length===0;
+  el('xlsxBaseInfo').innerHTML =
+     `锚点(${anchor==='en'?'英文':'中文'})命中 PPD 条目 <b>${b.matched}</b> 条 · 生成基线 <b>${b.items.length}</b> 项` +
+     (b.noTrans?` · Excel 此语言缺译 ${b.noTrans} 条(已跳过)`:'') +
+     ` · Excel 行用到 ${b.used}/${b.rowsTotal}` +
+     (b.exTarget!==target?` · 目标列回退 ${target}→${b.exTarget}`:'');
+  showRunErr('');
+}
+function setBaseline(text, label){
+  STATE.baseline = parseBaseline(text);
+  STATE.baselineSource = 'file';
+  el('baseInfo').innerHTML = `已载入基线: <b>${esc(label)}</b> · ${STATE.baseline.items.length} 项` +
+     (STATE.baseline.language?` · 语言 ${STATE.baseline.language}`:'');
+  if(STATE.baseline.language && STATE.parsed?.langs.includes(STATE.baseline.language)) el('lang').value = STATE.baseline.language;
+}
+
+async function loadPrinters(){
+  el('printerErr').textContent='';
+  try{
+    const r = await fetch('/api/printers'); const j = await r.json();
+    if(!r.ok) throw new Error(j.error||r.status);
+    renderPrinters(j.printers||[]);
+  }catch(e){ el('printerErr').textContent = '获取失败(需运行 server.py 且本机有 CUPS): '+e.message; }
+}
+function renderPrinters(list){
+  const box = el('printerList');
+  if(!list.length){ box.innerHTML='<div class="muted">未发现打印机。可改用“导入 PPD 文件”。</div>'; return; }
+  box.innerHTML = list.map((p,i)=>{
+    const ok = p.ppd_readable;
+    const pill = ok ? '<span class="pill t-match" style="color:#1a7f37;background:#e6f4ea">PPD可读</span>'
+                    : '<span class="pill t-missing" style="color:#9a6700;background:#fff8c5">需权限</span>';
+    return `<div class="printer" data-i="${i}"><div class="nm">${esc(p.name)} ${pill}</div>
+      <div class="meta">${esc(p.info||p.device_uri||p.ppd_path||'')}</div></div>`;
+  }).join('');
+  box.querySelectorAll('.printer').forEach(d=>d.onclick=async()=>{
+    box.querySelectorAll('.printer').forEach(x=>x.classList.remove('sel')); d.classList.add('sel');
+    const p = list[+d.dataset.i];
+    const role = (document.querySelector('input[name=ppdRole]:checked')||{}).value || 'test';
+    const info = role==='base' ? 'basePpdInfo' : 'ppdInfo';
+    try{
+      const r = await fetch('/api/ppd?name='+encodeURIComponent(p.name)); const j = await r.json();
+      if(!r.ok) throw new Error(j.error||r.status);
+      setPPD(j.text, p.name, role);
+    }catch(e){ el(info).innerHTML = `<span class="err">读取 PPD 失败: ${esc(e.message)}</span>`; }
+  });
+}
+
+// 文件 / 拖拽
+function wireFile(inputId, cb){
+  el(inputId).addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return;
+    const rd=new FileReader(); rd.onload=()=>cb(rd.result, f.name); rd.readAsText(f); e.target.value=''; });
+}
+wireFile('ppdFile', (t,n)=>setPPD(t,n,'test'));
+wireFile('baseFile', (t,n)=>setBaseline(t,n));
+wireFile('baseppdFile', (t,n)=>setPPD(t,n,'base'));
+el('ppdDrop').onclick = ()=>el('ppdFile').click();
+el('btnBaseFile').onclick = ()=>el('baseFile').click();
+el('btnBasePpdFile').onclick = ()=>el('baseppdFile').click();
+el('btnGenBase').onclick = genBaseFromPPD;
+el('btnDlBase').onclick = dlBaseline;
+el('btnXlsxFile').onclick = ()=>el('xlsxFile').click();
+el('xlsxFile').addEventListener('change', e=>{ const f=e.target.files[0]; if(f) importXlsx(f); e.target.value=''; });
+el('btnGenXlsxBase').onclick = genBaseFromXlsx;
+['dragover','dragleave','drop'].forEach(ev=>el('ppdDrop').addEventListener(ev,e=>{
+  e.preventDefault(); el('ppdDrop').classList.toggle('drag', ev==='dragover');
+  if(ev==='drop'){ const f=e.dataTransfer.files[0]; if(f){ const rd=new FileReader(); rd.onload=()=>setPPD(rd.result,f.name); rd.readAsText(f);} }
+}));
+
+el('btnLoadPrinters').onclick = loadPrinters;
+el('btnRun').onclick = runCompare;
+el('btnRunAll').onclick = runCompareAll;
+el('btnExportHtml').onclick = exportHtml;
+el('btnExportMd').onclick = exportMd;
+el('btnBasePaste').onclick = ()=>{ try{ setBaseline(el('basePaste').value,'(粘贴)'); showRunErr(''); }catch(e){ showRunErr('基线解析失败: '+e.message); } };
+el('search').oninput = ()=>{ if(STATE.results.length) renderResults(); };
+// 切换目标语言时: 若基线来自 Excel, 立即按新语言重建(下次比对即用新语言)
+el('lang').addEventListener('change', ()=>{
+  if(STATE.baselineSource==='xlsx' && STATE.xlsx && STATE.parsed) genBaseFromXlsx();
+});
+
+async function loadSampleAll(){
+  try{
+    const [p,b] = await Promise.all([fetch('sample.ppd').then(r=>r.text()),
+                                     fetch('baseline.sample.json').then(r=>r.text())]);
+    setBaseline(b,'baseline.sample.json'); setPPD(p,'sample.ppd'); showRunErr('');
+  }catch(e){ el('printerErr').textContent='加载样例失败(请通过 server.py 访问): '+e.message; }
+}
+el('btnSample').onclick = loadSampleAll;
+el('btnBaseSample').onclick = ()=>fetch('baseline.sample.json').then(r=>r.text()).then(t=>setBaseline(t,'baseline.sample.json'))
+  .catch(e=>showRunErr('加载样例基线失败: '+e.message));
+</script>
+</body>
 </html>

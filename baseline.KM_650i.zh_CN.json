@@ -1,0 +1,3334 @@
+{
+ "printer_model": "KM_650i",
+ "language": "zh_CN",
+ "items": [
+  {
+   "key": "PaperSources",
+   "standard_text": "供纸装置"
+  },
+  {
+   "key": "PaperSources.None_EagleH",
+   "standard_text": "无"
+  },
+  {
+   "key": "PaperSources.LU207_EagleH",
+   "standard_text": "LU-207"
+  },
+  {
+   "key": "PaperSources.LU302_EagleH",
+   "standard_text": "LU-302"
+  },
+  {
+   "key": "PaperSources.PC116_EagleH",
+   "standard_text": "PC-116"
+  },
+  {
+   "key": "PaperSources.PC216_EagleH",
+   "standard_text": "PC-216"
+  },
+  {
+   "key": "PaperSources.PC416_EagleH",
+   "standard_text": "PC-416"
+  },
+  {
+   "key": "PaperSources.PC417_EagleH",
+   "standard_text": "PC-417"
+  },
+  {
+   "key": "PaperSources.PC116LU207_EagleH",
+   "standard_text": "PC-116 + LU-207"
+  },
+  {
+   "key": "PaperSources.PC116LU302_EagleH",
+   "standard_text": "PC-116 + LU-302"
+  },
+  {
+   "key": "PaperSources.PC216LU207_EagleH",
+   "standard_text": "PC-216 + LU-207"
+  },
+  {
+   "key": "PaperSources.PC216LU302_EagleH",
+   "standard_text": "PC-216 + LU-302"
+  },
+  {
+   "key": "PaperSources.PC416LU207_EagleH",
+   "standard_text": "PC-416 + LU-207"
+  },
+  {
+   "key": "PaperSources.PC416LU302_EagleH",
+   "standard_text": "PC-416 + LU-302"
+  },
+  {
+   "key": "PaperSources.PC417LU207_EagleH",
+   "standard_text": "PC-417 + LU-207"
+  },
+  {
+   "key": "PaperSources.PC417LU302_EagleH",
+   "standard_text": "PC-417 + LU-302"
+  },
+  {
+   "key": "Finisher",
+   "standard_text": "出纸装置"
+  },
+  {
+   "key": "Finisher.None_EagleHZ",
+   "standard_text": "无"
+  },
+  {
+   "key": "Finisher.FS539_EagleHZ",
+   "standard_text": "FS-539"
+  },
+  {
+   "key": "Finisher.FS539SD_EagleHZ",
+   "standard_text": "FS-539 + SD-511"
+  },
+  {
+   "key": "Finisher.FS540_EagleHZ",
+   "standard_text": "FS-540"
+  },
+  {
+   "key": "Finisher.FS540SD_EagleHZ",
+   "standard_text": "FS-540 + SD-512"
+  },
+  {
+   "key": "Finisher.FS540JS_EagleHZ",
+   "standard_text": "FS-540 + JS-602"
+  },
+  {
+   "key": "Finisher.FS540SDJS_EagleHZ",
+   "standard_text": "FS-540 + JS-602 + SD-512"
+  },
+  {
+   "key": "KMPunchUnit",
+   "standard_text": "打孔部件"
+  },
+  {
+   "key": "KMPunchUnit.None",
+   "standard_text": "无"
+  },
+  {
+   "key": "KMPunchUnit.PK524-2_EagleHZ",
+   "standard_text": "PK-524 (2孔)"
+  },
+  {
+   "key": "KMPunchUnit.PK524-23_EagleHZ",
+   "standard_text": "PK-524 (2/3孔)"
+  },
+  {
+   "key": "KMPunchUnit.PK524-24_EagleHZ",
+   "standard_text": "PK-524 (2/4孔)"
+  },
+  {
+   "key": "KMPunchUnit.PK524-SWE4_EagleHZ",
+   "standard_text": "PK-524 (SWE4孔)"
+  },
+  {
+   "key": "KMPunchUnit.PK526-2_EagleHZ",
+   "standard_text": "PK-526 (2孔)"
+  },
+  {
+   "key": "KMPunchUnit.PK526-23_EagleHZ",
+   "standard_text": "PK-526 (2/3孔)"
+  },
+  {
+   "key": "KMPunchUnit.PK526-24_EagleHZ",
+   "standard_text": "PK-526 (2/4孔)"
+  },
+  {
+   "key": "KMPunchUnit.PK526-SWE4_EagleHZ",
+   "standard_text": "PK-526 (SWE4孔)"
+  },
+  {
+   "key": "ZFoldPunch",
+   "standard_text": "Z型折叠单元"
+  },
+  {
+   "key": "ZFoldPunch.None_EagleHZ",
+   "standard_text": "无"
+  },
+  {
+   "key": "ZFoldPunch.ZU609_EagleHZ",
+   "standard_text": "ZU-609"
+  },
+  {
+   "key": "CoverSheetFeeder",
+   "standard_text": "海报插页器"
+  },
+  {
+   "key": "CoverSheetFeeder.None_EagleHZ",
+   "standard_text": "无"
+  },
+  {
+   "key": "CoverSheetFeeder.PI507_EagleHZ",
+   "standard_text": "PI-507"
+  },
+  {
+   "key": "EasySecurePrint",
+   "standard_text": "安全文档设置"
+  },
+  {
+   "key": "EasySecurePrint.False",
+   "standard_text": "不要解除安全打印"
+  },
+  {
+   "key": "EasySecurePrint.True",
+   "standard_text": "解除安全打印"
+  },
+  {
+   "key": "PrinterHDD.False",
+   "standard_text": "无"
+  },
+  {
+   "key": "PrinterHDD.True",
+   "standard_text": "已经安装"
+  },
+  {
+   "key": "SecurePrintOnly.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "SecurePrintOnly.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PublicUserAccess.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PublicUserAccess.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "SimplifiedPaperType.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "SimplifiedPaperType.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PageSize",
+   "standard_text": "Paper Size"
+  },
+  {
+   "key": "PageSize.A3JIS",
+   "standard_text": "A3"
+  },
+  {
+   "key": "PageSize.A4JIS",
+   "standard_text": "A4"
+  },
+  {
+   "key": "PageSize.A5JIS",
+   "standard_text": "A5"
+  },
+  {
+   "key": "PageSize.A6JIS",
+   "standard_text": "A6"
+  },
+  {
+   "key": "PageSize.B4JIS",
+   "standard_text": "B4"
+  },
+  {
+   "key": "PageSize.B5JIS",
+   "standard_text": "B5"
+  },
+  {
+   "key": "PageSize.B6JIS",
+   "standard_text": "B6"
+  },
+  {
+   "key": "PageSize.220mmx330mm",
+   "standard_text": "220mmx330mm"
+  },
+  {
+   "key": "PageSize.12x18",
+   "standard_text": "12x18"
+  },
+  {
+   "key": "PageSize.11x17",
+   "standard_text": "11x17"
+  },
+  {
+   "key": "PageSize.8.5x14",
+   "standard_text": "8 1/2x14"
+  },
+  {
+   "key": "PageSize.8.5x13",
+   "standard_text": "8 1/2x13"
+  },
+  {
+   "key": "PageSize.8.5x13.5",
+   "standard_text": "8 1/2x13 1/2"
+  },
+  {
+   "key": "PageSize.8.5x11",
+   "standard_text": "8 1/2x11"
+  },
+  {
+   "key": "PageSize.8.25x13",
+   "standard_text": "8 1/4x13"
+  },
+  {
+   "key": "PageSize.8.125x13.25",
+   "standard_text": "8 1/8x13 1/4"
+  },
+  {
+   "key": "PageSize.8x13",
+   "standard_text": "8x13"
+  },
+  {
+   "key": "PageSize.7.25x10.5",
+   "standard_text": "7 1/4x10 1/2"
+  },
+  {
+   "key": "PageSize.5.5x8.5",
+   "standard_text": "5 1/2x8 1/2"
+  },
+  {
+   "key": "PageSize.8K",
+   "standard_text": "8K"
+  },
+  {
+   "key": "PageSize.16K",
+   "standard_text": "16K"
+  },
+  {
+   "key": "PageSize.EnvelopeB5",
+   "standard_text": "信封 B5"
+  },
+  {
+   "key": "PageSize.EnvelopeDL",
+   "standard_text": "信封 DL"
+  },
+  {
+   "key": "PageSize.EnvelopeMonarch",
+   "standard_text": "信封 Monarch"
+  },
+  {
+   "key": "PageSize.EnvelopeCom10",
+   "standard_text": "信封 Com10"
+  },
+  {
+   "key": "PageSize.EnvelopeC4",
+   "standard_text": "信封 C4"
+  },
+  {
+   "key": "PageSize.EnvelopeC5",
+   "standard_text": "信封 C5"
+  },
+  {
+   "key": "PageSize.EnvelopeC6",
+   "standard_text": "信封 C6"
+  },
+  {
+   "key": "PageSize.EnvelopeYou3",
+   "standard_text": "信封 Yougata3"
+  },
+  {
+   "key": "PageSize.EnvelopeYou4",
+   "standard_text": "信封 Yougata4"
+  },
+  {
+   "key": "PageSize.EnvelopeChou3",
+   "standard_text": "信封 Nagagata3"
+  },
+  {
+   "key": "PageSize.EnvelopeChou4",
+   "standard_text": "信封 Nagagata4"
+  },
+  {
+   "key": "PageSize.EnvelopeKaku1",
+   "standard_text": "信封 Kakugata1"
+  },
+  {
+   "key": "PageSize.EnvelopeKaku2",
+   "standard_text": "信封 Kakugata2"
+  },
+  {
+   "key": "PageSize.EnvelopeKaku3",
+   "standard_text": "信封 Kakugata3"
+  },
+  {
+   "key": "PageSize.JapanesePostCard",
+   "standard_text": "明信片"
+  },
+  {
+   "key": "PageSize.4x6_PostCard",
+   "standard_text": "4x6 Postcard"
+  },
+  {
+   "key": "PageSize.A3Wide",
+   "standard_text": "A3W"
+  },
+  {
+   "key": "PageSize.A4Wide",
+   "standard_text": "A4W"
+  },
+  {
+   "key": "PageSize.A5Wide",
+   "standard_text": "A5W"
+  },
+  {
+   "key": "PageSize.B4Wide",
+   "standard_text": "B4W"
+  },
+  {
+   "key": "PageSize.B5Wide",
+   "standard_text": "B5W"
+  },
+  {
+   "key": "PageSize.11x17Wide",
+   "standard_text": "11x17W"
+  },
+  {
+   "key": "PageSize.8.5x11Wide",
+   "standard_text": "8 1/2x11W"
+  },
+  {
+   "key": "PageSize.5.5x8.5Wide",
+   "standard_text": "5 1/2x8 1/2W"
+  },
+  {
+   "key": "PageSize.SRA3",
+   "standard_text": "SRA3"
+  },
+  {
+   "key": "PageSize.A4Index",
+   "standard_text": "A4索引"
+  },
+  {
+   "key": "PageSize.8.5x11Tab",
+   "standard_text": "8 1/2x11索引"
+  },
+  {
+   "key": "PageRegion.A3JIS",
+   "standard_text": "A3"
+  },
+  {
+   "key": "PageRegion.A4JIS",
+   "standard_text": "A4"
+  },
+  {
+   "key": "PageRegion.A5JIS",
+   "standard_text": "A5"
+  },
+  {
+   "key": "PageRegion.A6JIS",
+   "standard_text": "A6"
+  },
+  {
+   "key": "PageRegion.B4JIS",
+   "standard_text": "B4"
+  },
+  {
+   "key": "PageRegion.B5JIS",
+   "standard_text": "B5"
+  },
+  {
+   "key": "PageRegion.B6JIS",
+   "standard_text": "B6"
+  },
+  {
+   "key": "PageRegion.220mmx330mm",
+   "standard_text": "220mmx330mm"
+  },
+  {
+   "key": "PageRegion.12x18",
+   "standard_text": "12x18"
+  },
+  {
+   "key": "PageRegion.11x17",
+   "standard_text": "11x17"
+  },
+  {
+   "key": "PageRegion.8.5x14",
+   "standard_text": "8 1/2x14"
+  },
+  {
+   "key": "PageRegion.8.5x13",
+   "standard_text": "8 1/2x13"
+  },
+  {
+   "key": "PageRegion.8.5x13.5",
+   "standard_text": "8 1/2 x 13 1/2"
+  },
+  {
+   "key": "PageRegion.8.5x11",
+   "standard_text": "8 1/2x11"
+  },
+  {
+   "key": "PageRegion.8.25x13",
+   "standard_text": "8 1/4x13"
+  },
+  {
+   "key": "PageRegion.8.125x13.25",
+   "standard_text": "8 1/8x13 1/4"
+  },
+  {
+   "key": "PageRegion.8x13",
+   "standard_text": "8x13"
+  },
+  {
+   "key": "PageRegion.7.25x10.5",
+   "standard_text": "7 1/4x10 1/2"
+  },
+  {
+   "key": "PageRegion.5.5x8.5",
+   "standard_text": "5 1/2x8 1/2"
+  },
+  {
+   "key": "PageRegion.8K",
+   "standard_text": "8K"
+  },
+  {
+   "key": "PageRegion.16K",
+   "standard_text": "16K"
+  },
+  {
+   "key": "PageRegion.EnvelopeB5",
+   "standard_text": "Envelope B5"
+  },
+  {
+   "key": "PageRegion.EnvelopeDL",
+   "standard_text": "Envelope DL"
+  },
+  {
+   "key": "PageRegion.EnvelopeMonarch",
+   "standard_text": "Envelope Monarch"
+  },
+  {
+   "key": "PageRegion.EnvelopeCom10",
+   "standard_text": "Envelope Com10"
+  },
+  {
+   "key": "PageRegion.EnvelopeC4",
+   "standard_text": "EnvelopeC4"
+  },
+  {
+   "key": "PageRegion.EnvelopeC5",
+   "standard_text": "Envelope C5"
+  },
+  {
+   "key": "PageRegion.EnvelopeC6",
+   "standard_text": "EnvelopeC6"
+  },
+  {
+   "key": "PageRegion.EnvelopeYou3",
+   "standard_text": "EnvelopeYou3"
+  },
+  {
+   "key": "PageRegion.EnvelopeYou4",
+   "standard_text": "EnvelopeYou4"
+  },
+  {
+   "key": "PageRegion.EnvelopeChou3",
+   "standard_text": "EnvelopeChou3"
+  },
+  {
+   "key": "PageRegion.EnvelopeChou4",
+   "standard_text": "EnvelopeChou4"
+  },
+  {
+   "key": "PageRegion.EnvelopeKaku1",
+   "standard_text": "EnvelopeKaku1"
+  },
+  {
+   "key": "PageRegion.EnvelopeKaku2",
+   "standard_text": "EnvelopeKaku2"
+  },
+  {
+   "key": "PageRegion.EnvelopeKaku3",
+   "standard_text": "EnvelopeKaku3"
+  },
+  {
+   "key": "PageRegion.JapanesePostCard",
+   "standard_text": "Postcard"
+  },
+  {
+   "key": "PageRegion.4x6_PostCard",
+   "standard_text": "4x6 Postcard"
+  },
+  {
+   "key": "PageRegion.A3Wide",
+   "standard_text": "A3W"
+  },
+  {
+   "key": "PageRegion.A4Wide",
+   "standard_text": "A4W"
+  },
+  {
+   "key": "PageRegion.A5Wide",
+   "standard_text": "A5W"
+  },
+  {
+   "key": "PageRegion.B4Wide",
+   "standard_text": "B4W"
+  },
+  {
+   "key": "PageRegion.B5Wide",
+   "standard_text": "B5W"
+  },
+  {
+   "key": "PageRegion.11x17Wide",
+   "standard_text": "11x17W"
+  },
+  {
+   "key": "PageRegion.8.5x11Wide",
+   "standard_text": "8 1/2x11W"
+  },
+  {
+   "key": "PageRegion.5.5x8.5Wide",
+   "standard_text": "5 1/2x8 1/2W"
+  },
+  {
+   "key": "PageRegion.SRA3",
+   "standard_text": "SRA3"
+  },
+  {
+   "key": "PageRegion.A4Index",
+   "standard_text": "A4Tab"
+  },
+  {
+   "key": "PageRegion.8.5x11Tab",
+   "standard_text": "8 1/2x11Tab"
+  },
+  {
+   "key": "Collate.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "Collate.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "KMCollate.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "KMCollate.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "Offset.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "Offset.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "OutputMethod",
+   "standard_text": "输出方式"
+  },
+  {
+   "key": "OutputMethod.Off",
+   "standard_text": "普通打印"
+  },
+  {
+   "key": "OutputMethod.Secure",
+   "standard_text": "机密打印"
+  },
+  {
+   "key": "OutputMethod.Store",
+   "standard_text": "保存方框"
+  },
+  {
+   "key": "OutputMethod.StorePrint",
+   "standard_text": "保存方框&打印"
+  },
+  {
+   "key": "OutputMethod.ProofMode",
+   "standard_text": "校样打印"
+  },
+  {
+   "key": "OutputMethod.AuthPrint",
+   "standard_text": "ID&打印"
+  },
+  {
+   "key": "KMAuthentication.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "KMAuthentication.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "UserType.Public",
+   "standard_text": "共享用户"
+  },
+  {
+   "key": "UserType.Private",
+   "standard_text": "登录用户"
+  },
+  {
+   "key": "CertServerType",
+   "standard_text": "用户认证设置"
+  },
+  {
+   "key": "CertServerType.None",
+   "standard_text": "设备"
+  },
+  {
+   "key": "CertServerType.Number",
+   "standard_text": "外部服务器"
+  },
+  {
+   "key": "CertServerType.DeviceNumber",
+   "standard_text": "设备 + 外部服务器"
+  },
+  {
+   "key": "CertServerNum",
+   "standard_text": "服务器设置"
+  },
+  {
+   "key": "CertServerNum.Device",
+   "standard_text": "设备"
+  },
+  {
+   "key": "CertServerNum.Server1",
+   "standard_text": "服务器1"
+  },
+  {
+   "key": "CertServerNum.Server2",
+   "standard_text": "服务器2"
+  },
+  {
+   "key": "CertServerNum.Server3",
+   "standard_text": "服务器3"
+  },
+  {
+   "key": "CertServerNum.Server4",
+   "standard_text": "服务器4"
+  },
+  {
+   "key": "CertServerNum.Server5",
+   "standard_text": "服务器5"
+  },
+  {
+   "key": "CertServerNum.Server6",
+   "standard_text": "服务器6"
+  },
+  {
+   "key": "CertServerNum.Server7",
+   "standard_text": "服务器7"
+  },
+  {
+   "key": "CertServerNum.Server8",
+   "standard_text": "服务器8"
+  },
+  {
+   "key": "CertServerNum.Server9",
+   "standard_text": "服务器9"
+  },
+  {
+   "key": "CertServerNum.Server10",
+   "standard_text": "服务器10"
+  },
+  {
+   "key": "CertServerNum.Server11",
+   "standard_text": "服务器11"
+  },
+  {
+   "key": "CertServerNum.Server12",
+   "standard_text": "服务器12"
+  },
+  {
+   "key": "CertServerNum.Server13",
+   "standard_text": "服务器13"
+  },
+  {
+   "key": "CertServerNum.Server14",
+   "standard_text": "服务器14"
+  },
+  {
+   "key": "CertServerNum.Server15",
+   "standard_text": "服务器15"
+  },
+  {
+   "key": "CertServerNum.Server16",
+   "standard_text": "服务器16"
+  },
+  {
+   "key": "CertServerNum.Server17",
+   "standard_text": "服务器17"
+  },
+  {
+   "key": "CertServerNum.Server18",
+   "standard_text": "服务器18"
+  },
+  {
+   "key": "CertServerNum.Server19",
+   "standard_text": "服务器19"
+  },
+  {
+   "key": "CertServerNum.Server20",
+   "standard_text": "服务器20"
+  },
+  {
+   "key": "KMSection.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "KMSection.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "NameServerEnable",
+   "standard_text": "增强服务器"
+  },
+  {
+   "key": "NameServerEnable.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "NameServerEnable.NameServer",
+   "standard_text": "增强服务器"
+  },
+  {
+   "key": "NameServerEnable.DeviceName",
+   "standard_text": "设备 + 增强服务器"
+  },
+  {
+   "key": "NameCertServerType",
+   "standard_text": "认证设置"
+  },
+  {
+   "key": "NameCertServerType.None",
+   "standard_text": "认证设置"
+  },
+  {
+   "key": "NameCertServerType.NameServer",
+   "standard_text": "增强服务器"
+  },
+  {
+   "key": "NameCertServerType.Device",
+   "standard_text": "设备"
+  },
+  {
+   "key": "NameCertServerType.DeviceSection",
+   "standard_text": "设备 + 部门管理"
+  },
+  {
+   "key": "NameServerPublic.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "NameServerPublic.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PopupSecureMode",
+   "standard_text": "Relay Server"
+  },
+  {
+   "key": "PopupSecureMode.ID",
+   "standard_text": "ID Only"
+  },
+  {
+   "key": "PopupSecureMode.IDPW",
+   "standard_text": "ID & Password"
+  },
+  {
+   "key": "KMDuplex",
+   "standard_text": "打印类型"
+  },
+  {
+   "key": "KMDuplex.Single",
+   "standard_text": "单面"
+  },
+  {
+   "key": "KMDuplex.Double",
+   "standard_text": "双面"
+  },
+  {
+   "key": "KMDuplex.Booklet",
+   "standard_text": "小册子"
+  },
+  {
+   "key": "Binding",
+   "standard_text": "装订位置"
+  },
+  {
+   "key": "Binding.LeftBinding",
+   "standard_text": "左装订"
+  },
+  {
+   "key": "Binding.RightBinding",
+   "standard_text": "右装订"
+  },
+  {
+   "key": "Binding.TopBinding",
+   "standard_text": "上装订"
+  },
+  {
+   "key": "Combination",
+   "standard_text": "海报模式"
+  },
+  {
+   "key": "Combination.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "Combination.2x2",
+   "standard_text": "2 x 2"
+  },
+  {
+   "key": "Combination.3x3",
+   "standard_text": "3 x 3"
+  },
+  {
+   "key": "Combination.4x4",
+   "standard_text": "4 x 4"
+  },
+  {
+   "key": "KMBorderLine.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "KMBorderLine.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "Rotate180.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "Rotate180.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "ImageShift.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "ImageShift.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "FrontUDShift",
+   "standard_text": "正面"
+  },
+  {
+   "key": "FrontUDShift.Up",
+   "standard_text": "前端"
+  },
+  {
+   "key": "FrontUDShift.Down",
+   "standard_text": "尾端"
+  },
+  {
+   "key": "FrontLRShift",
+   "standard_text": "正面"
+  },
+  {
+   "key": "FrontLRShift.Left",
+   "standard_text": "左"
+  },
+  {
+   "key": "FrontLRShift.Right",
+   "standard_text": "右"
+  },
+  {
+   "key": "BackUDShift",
+   "standard_text": "背面"
+  },
+  {
+   "key": "BackUDShift.Up",
+   "standard_text": "前端"
+  },
+  {
+   "key": "BackUDShift.Down",
+   "standard_text": "尾端"
+  },
+  {
+   "key": "BackLRShift",
+   "standard_text": "背面"
+  },
+  {
+   "key": "BackLRShift.Left",
+   "standard_text": "左"
+  },
+  {
+   "key": "BackLRShift.Right",
+   "standard_text": "右"
+  },
+  {
+   "key": "BackAutoSetup.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "BackAutoSetup.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "Chapter.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "Chapter.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "StapleSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "StapleSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "StapleOption",
+   "standard_text": "装订"
+  },
+  {
+   "key": "StapleOption.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "StapleOption.1StapleLeft",
+   "standard_text": "左角 (自动)"
+  },
+  {
+   "key": "StapleOption.1StapleZeroLeft",
+   "standard_text": "左角 (0度)"
+  },
+  {
+   "key": "StapleOption.1StapleRight",
+   "standard_text": "右角 (自动)"
+  },
+  {
+   "key": "StapleOption.1StapleZeroRight",
+   "standard_text": "右角 (0度)"
+  },
+  {
+   "key": "StapleOption.2Staples",
+   "standard_text": "2 点"
+  },
+  {
+   "key": "PunchSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PunchSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PunchOption",
+   "standard_text": "打孔"
+  },
+  {
+   "key": "PunchOption.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PunchOption.2holes",
+   "standard_text": "2孔"
+  },
+  {
+   "key": "PunchOption.3holes",
+   "standard_text": "3孔"
+  },
+  {
+   "key": "PunchOption.4holes",
+   "standard_text": "4孔"
+  },
+  {
+   "key": "Fold",
+   "standard_text": "折纸/装订"
+  },
+  {
+   "key": "Fold.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "Fold.Stitch",
+   "standard_text": "中央装订 & 折叠"
+  },
+  {
+   "key": "Fold.HalfFold",
+   "standard_text": "折页(按复印作业)"
+  },
+  {
+   "key": "Fold.HFoldOne",
+   "standard_text": "折页(张)"
+  },
+  {
+   "key": "Fold.HFoldSelect",
+   "standard_text": "折页(按张)"
+  },
+  {
+   "key": "Fold.ZFold1",
+   "standard_text": "Z型折叠(A3,B4,11x17,8K)"
+  },
+  {
+   "key": "Fold.ZFold2",
+   "standard_text": "Z型折叠(8 1/2x14)"
+  },
+  {
+   "key": "Fold.TriFold",
+   "standard_text": "三折页(按复印作业)"
+  },
+  {
+   "key": "Fold.TFoldOne",
+   "standard_text": "三折页(张)"
+  },
+  {
+   "key": "Fold.TFoldSelect",
+   "standard_text": "三折页(按张)"
+  },
+  {
+   "key": "FDPage",
+   "standard_text": "折页设置"
+  },
+  {
+   "key": "FDPage.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "FDPage.Page1",
+   "standard_text": "1"
+  },
+  {
+   "key": "FDPage.Page2",
+   "standard_text": "2"
+  },
+  {
+   "key": "FDPage.Page3",
+   "standard_text": "3"
+  },
+  {
+   "key": "FDPage.Page4",
+   "standard_text": "4"
+  },
+  {
+   "key": "FDPage.Page5",
+   "standard_text": "5"
+  },
+  {
+   "key": "FDPage.Page6",
+   "standard_text": "6"
+  },
+  {
+   "key": "FDPage.Page7",
+   "standard_text": "7"
+  },
+  {
+   "key": "FDPage.Page8",
+   "standard_text": "8"
+  },
+  {
+   "key": "FDPage.Page9",
+   "standard_text": "9"
+  },
+  {
+   "key": "FDPage.Page10",
+   "standard_text": "10"
+  },
+  {
+   "key": "EdgeMatching",
+   "standard_text": "纸张安排"
+  },
+  {
+   "key": "EdgeMatching.Finish",
+   "standard_text": "优先安排纸张"
+  },
+  {
+   "key": "EdgeMatching.Speed",
+   "standard_text": "优先工作效率"
+  },
+  {
+   "key": "SupportPageSize",
+   "standard_text": "Custom Page Size"
+  },
+  {
+   "key": "SupportPageSize.Off",
+   "standard_text": "Off"
+  },
+  {
+   "key": "SupportPageSize.CustomPSize",
+   "standard_text": "Custom"
+  },
+  {
+   "key": "SupportPageSize.BannerPSize",
+   "standard_text": "Banner"
+  },
+  {
+   "key": "SupportPageSize.OtherPSize",
+   "standard_text": "Other"
+  },
+  {
+   "key": "KMInputSlot",
+   "standard_text": "纸盒"
+  },
+  {
+   "key": "KMInputSlot.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "KMInputSlot.Tray1",
+   "standard_text": "纸盘1"
+  },
+  {
+   "key": "KMInputSlot.Tray2",
+   "standard_text": "纸盘2"
+  },
+  {
+   "key": "KMInputSlot.Tray3",
+   "standard_text": "纸盘3"
+  },
+  {
+   "key": "KMInputSlot.Tray4",
+   "standard_text": "纸盘4"
+  },
+  {
+   "key": "KMInputSlot.TrayLCT",
+   "standard_text": "LCT"
+  },
+  {
+   "key": "KMInputSlot.BypassTray",
+   "standard_text": "手送纸盘"
+  },
+  {
+   "key": "MediaType",
+   "standard_text": "纸张类型"
+  },
+  {
+   "key": "MediaType.Plain",
+   "standard_text": "普通纸"
+  },
+  {
+   "key": "MediaType.PlainPlus",
+   "standard_text": "普通纸+"
+  },
+  {
+   "key": "MediaType.Thick1",
+   "standard_text": "厚纸1"
+  },
+  {
+   "key": "MediaType.Thick1Plus",
+   "standard_text": "厚纸1+"
+  },
+  {
+   "key": "MediaType.Thick2",
+   "standard_text": "厚纸2"
+  },
+  {
+   "key": "MediaType.Thick3",
+   "standard_text": "厚纸3"
+  },
+  {
+   "key": "MediaType.Thick4",
+   "standard_text": "厚纸4"
+  },
+  {
+   "key": "MediaType.Thin",
+   "standard_text": "薄纸"
+  },
+  {
+   "key": "MediaType.Color",
+   "standard_text": "彩色纸"
+  },
+  {
+   "key": "MediaType.Transparency",
+   "standard_text": "透明胶片"
+  },
+  {
+   "key": "MediaType.Letterhead",
+   "standard_text": "信头纸"
+  },
+  {
+   "key": "MediaType.Envelope",
+   "standard_text": "信封"
+  },
+  {
+   "key": "MediaType.Special",
+   "standard_text": "特殊纸"
+  },
+  {
+   "key": "MediaType.SingleSidedOnly",
+   "standard_text": "仅单面"
+  },
+  {
+   "key": "MediaType.TAB",
+   "standard_text": "索引纸"
+  },
+  {
+   "key": "MediaType.Plain_2nd",
+   "standard_text": "普通纸(第2面)"
+  },
+  {
+   "key": "MediaType.PlainPlus_2nd",
+   "standard_text": "普通纸+(第2面)"
+  },
+  {
+   "key": "MediaType.Thick1_2nd",
+   "standard_text": "厚纸 1(第2面)"
+  },
+  {
+   "key": "MediaType.Thick1Plus_2nd",
+   "standard_text": "厚纸 1+(第2面)"
+  },
+  {
+   "key": "MediaType.Thick2_2nd",
+   "standard_text": "厚纸 2(第2面)"
+  },
+  {
+   "key": "MediaType.Thick3_2nd",
+   "standard_text": "厚纸 3(第2面)"
+  },
+  {
+   "key": "MediaType.Thick4_2nd",
+   "standard_text": "厚纸 4(第2面)"
+  },
+  {
+   "key": "MediaType.Recycled",
+   "standard_text": "再生纸"
+  },
+  {
+   "key": "MediaType.Recycled_2nd",
+   "standard_text": "再生纸(第2面)"
+  },
+  {
+   "key": "MediaType.User1_Plain",
+   "standard_text": "用户1(普通纸)"
+  },
+  {
+   "key": "MediaType.User1_Plain_2nd",
+   "standard_text": "用户1(普通纸 第2面)"
+  },
+  {
+   "key": "MediaType.User2_PlainPlus",
+   "standard_text": "用户2(普通纸+)"
+  },
+  {
+   "key": "MediaType.User2_PlainPlus_2nd",
+   "standard_text": "用户2(普通纸+ 第2面)"
+  },
+  {
+   "key": "MediaType.User3_Thick1",
+   "standard_text": "用户3(厚纸1)"
+  },
+  {
+   "key": "MediaType.User3_Thick1_2nd",
+   "standard_text": "用户3(厚纸1 第2面)"
+  },
+  {
+   "key": "MediaType.User4_Thick1",
+   "standard_text": "用户4(厚纸1+)"
+  },
+  {
+   "key": "MediaType.User4_Thick1_2nd",
+   "standard_text": "用户4(厚纸1+ 第2面)"
+  },
+  {
+   "key": "MediaType.User5_Thick2",
+   "standard_text": "用户5(厚纸2)"
+  },
+  {
+   "key": "MediaType.User5_Thick2_2nd",
+   "standard_text": "用户5(厚纸2 第2面)"
+  },
+  {
+   "key": "MediaType.User6_Thick3",
+   "standard_text": "用户6(厚纸3)"
+  },
+  {
+   "key": "MediaType.User6_Thick3_2nd",
+   "standard_text": "用户6(厚纸3 第2面)"
+  },
+  {
+   "key": "MediaType.PrinterDefault",
+   "standard_text": "不指定"
+  },
+  {
+   "key": "MediaType.CustomMedia1",
+   "standard_text": "自定义1"
+  },
+  {
+   "key": "MediaType.CustomMedia1_2nd",
+   "standard_text": "自定义1(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia2",
+   "standard_text": "自定义2"
+  },
+  {
+   "key": "MediaType.CustomMedia2_2nd",
+   "standard_text": "自定义2(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia3",
+   "standard_text": "自定义3"
+  },
+  {
+   "key": "MediaType.CustomMedia3_2nd",
+   "standard_text": "自定义3(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia4",
+   "standard_text": "自定义4"
+  },
+  {
+   "key": "MediaType.CustomMedia4_2nd",
+   "standard_text": "自定义4(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia5",
+   "standard_text": "自定义5"
+  },
+  {
+   "key": "MediaType.CustomMedia5_2nd",
+   "standard_text": "自定义5(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia6",
+   "standard_text": "自定义6"
+  },
+  {
+   "key": "MediaType.CustomMedia6_2nd",
+   "standard_text": "自定义6(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia7",
+   "standard_text": "自定义7"
+  },
+  {
+   "key": "MediaType.CustomMedia7_2nd",
+   "standard_text": "自定义7(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia8",
+   "standard_text": "自定义8"
+  },
+  {
+   "key": "MediaType.CustomMedia8_2nd",
+   "standard_text": "自定义8(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia9",
+   "standard_text": "自定义9"
+  },
+  {
+   "key": "MediaType.CustomMedia9_2nd",
+   "standard_text": "自定义9(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia10",
+   "standard_text": "自定义10"
+  },
+  {
+   "key": "MediaType.CustomMedia10_2nd",
+   "standard_text": "自定义10(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia11",
+   "standard_text": "自定义11"
+  },
+  {
+   "key": "MediaType.CustomMedia11_2nd",
+   "standard_text": "自定义11(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia12",
+   "standard_text": "自定义12"
+  },
+  {
+   "key": "MediaType.CustomMedia12_2nd",
+   "standard_text": "自定义12(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia13",
+   "standard_text": "自定义13"
+  },
+  {
+   "key": "MediaType.CustomMedia13_2nd",
+   "standard_text": "自定义13(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia14",
+   "standard_text": "自定义14"
+  },
+  {
+   "key": "MediaType.CustomMedia14_2nd",
+   "standard_text": "自定义14(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia15",
+   "standard_text": "自定义15"
+  },
+  {
+   "key": "MediaType.CustomMedia15_2nd",
+   "standard_text": "自定义15(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia16",
+   "standard_text": "自定义16"
+  },
+  {
+   "key": "MediaType.CustomMedia16_2nd",
+   "standard_text": "自定义16(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia17",
+   "standard_text": "自定义17"
+  },
+  {
+   "key": "MediaType.CustomMedia17_2nd",
+   "standard_text": "自定义17(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia18",
+   "standard_text": "自定义18"
+  },
+  {
+   "key": "MediaType.CustomMedia18_2nd",
+   "standard_text": "自定义18(第2面)"
+  },
+  {
+   "key": "MediaType.CustomMedia19",
+   "standard_text": "自定义19"
+  },
+  {
+   "key": "MediaType.CustomMedia19_2nd",
+   "standard_text": "自定义19(第2面)"
+  },
+  {
+   "key": "OutputBin",
+   "standard_text": "出纸盘"
+  },
+  {
+   "key": "OutputBin.Auto",
+   "standard_text": "默认值"
+  },
+  {
+   "key": "OutputBin.SubTray",
+   "standard_text": "纸盘1"
+  },
+  {
+   "key": "OutputBin.MainTray",
+   "standard_text": "纸盘2"
+  },
+  {
+   "key": "OutputBin.ExtraTray",
+   "standard_text": "纸盘3"
+  },
+  {
+   "key": "OutputBin.Tray4",
+   "standard_text": "纸盘4"
+  },
+  {
+   "key": "CarbonCopySet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "CarbonCopySet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "CarbonCopyOrder",
+   "standard_text": "CarbonCopyOrder"
+  },
+  {
+   "key": "CarbonCopyOrder.Tray",
+   "standard_text": "纸盘"
+  },
+  {
+   "key": "CarbonCopyOrder.Page",
+   "standard_text": "页"
+  },
+  {
+   "key": "CarbonCopyTray1.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "CarbonCopyTray1.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "CarbonCopyTray2.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "CarbonCopyTray2.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "CarbonCopyTray3.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "CarbonCopyTray3.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "CarbonCopyTray4.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "CarbonCopyTray4.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "CarbonCopyTray5.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "CarbonCopyTray5.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "CarbonCopyTray6.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "CarbonCopyTray6.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "FrontCoverPage.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "FrontCoverPage.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "FrontCoverOption",
+   "standard_text": "封面"
+  },
+  {
+   "key": "FrontCoverOption.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "FrontCoverOption.Printed",
+   "standard_text": "普通打印"
+  },
+  {
+   "key": "FrontCoverOption.Blank",
+   "standard_text": "空白纸"
+  },
+  {
+   "key": "FrontCoverTray",
+   "standard_text": "封面纸盒"
+  },
+  {
+   "key": "FrontCoverTray.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "FrontCoverTray.Tray1",
+   "standard_text": "纸盘1"
+  },
+  {
+   "key": "FrontCoverTray.Tray2",
+   "standard_text": "纸盘2"
+  },
+  {
+   "key": "FrontCoverTray.Tray3",
+   "standard_text": "纸盘3"
+  },
+  {
+   "key": "FrontCoverTray.Tray4",
+   "standard_text": "纸盘4"
+  },
+  {
+   "key": "FrontCoverTray.TrayLCT",
+   "standard_text": "LCT"
+  },
+  {
+   "key": "FrontCoverTray.BypassTray",
+   "standard_text": "手送纸盘"
+  },
+  {
+   "key": "BackCoverPage.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "BackCoverPage.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "BackCoverOption",
+   "standard_text": "封底"
+  },
+  {
+   "key": "BackCoverOption.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "BackCoverOption.Printed",
+   "standard_text": "普通打印"
+  },
+  {
+   "key": "BackCoverOption.Blank",
+   "standard_text": "空白纸"
+  },
+  {
+   "key": "BackCoverTray",
+   "standard_text": "封底纸盒"
+  },
+  {
+   "key": "BackCoverTray.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "BackCoverTray.Tray1",
+   "standard_text": "纸盘1"
+  },
+  {
+   "key": "BackCoverTray.Tray2",
+   "standard_text": "纸盘2"
+  },
+  {
+   "key": "BackCoverTray.Tray3",
+   "standard_text": "纸盘3"
+  },
+  {
+   "key": "BackCoverTray.Tray4",
+   "standard_text": "纸盘4"
+  },
+  {
+   "key": "BackCoverTray.TrayLCT",
+   "standard_text": "LCT"
+  },
+  {
+   "key": "BackCoverTray.BypassTray",
+   "standard_text": "手送纸盘"
+  },
+  {
+   "key": "PIFrontCoverPage.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PIFrontCoverPage.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PIFrontCoverTray",
+   "standard_text": "正面封皮"
+  },
+  {
+   "key": "PIFrontCoverTray.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PIFrontCoverTray.PITray1",
+   "standard_text": "PI纸盘1"
+  },
+  {
+   "key": "PIFrontCoverTray.PITray2",
+   "standard_text": "PI纸盘2"
+  },
+  {
+   "key": "PIBackCoverPage.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PIBackCoverPage.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PIBackCoverTray",
+   "standard_text": "背面封皮"
+  },
+  {
+   "key": "PIBackCoverTray.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PIBackCoverTray.PITray1",
+   "standard_text": "PI纸盘1"
+  },
+  {
+   "key": "PIBackCoverTray.PITray2",
+   "standard_text": "PI纸盘2"
+  },
+  {
+   "key": "OHPInterleave.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "OHPInterleave.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "OHPInterOption",
+   "standard_text": "OHP插页"
+  },
+  {
+   "key": "OHPInterOption.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "OHPInterOption.Blank",
+   "standard_text": "空白纸"
+  },
+  {
+   "key": "OHPOpTray",
+   "standard_text": "插页纸盒"
+  },
+  {
+   "key": "OHPOpTray.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "OHPOpTray.Tray1",
+   "standard_text": "纸盘1"
+  },
+  {
+   "key": "OHPOpTray.Tray2",
+   "standard_text": "纸盘2"
+  },
+  {
+   "key": "OHPOpTray.Tray3",
+   "standard_text": "纸盘3"
+  },
+  {
+   "key": "OHPOpTray.Tray4",
+   "standard_text": "纸盘4"
+  },
+  {
+   "key": "OHPOpTray.TrayLCT",
+   "standard_text": "LCT"
+  },
+  {
+   "key": "PerPageSetting.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PerPageSetting.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "CopyProtectSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "CopyProtectSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "DateTimeSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "DateTimeSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PageNumberSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PageNumberSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "HeaderFooterSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "HeaderFooterSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "JimonTextSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "JimonTextSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "JimonTextOption",
+   "standard_text": "字符"
+  },
+  {
+   "key": "JimonTextOption.Fixed1",
+   "standard_text": "无效复印"
+  },
+  {
+   "key": "JimonTextOption.Fixed2",
+   "standard_text": "复印"
+  },
+  {
+   "key": "JimonTextOption.Fixed3",
+   "standard_text": "无效"
+  },
+  {
+   "key": "JimonTextOption.Fixed4",
+   "standard_text": "私人文件"
+  },
+  {
+   "key": "JimonTextOption.Fixed5",
+   "standard_text": "未经授权复印"
+  },
+  {
+   "key": "JimonTextOption.Fixed6",
+   "standard_text": "草稿复印"
+  },
+  {
+   "key": "JimonTextOption.Fixed7",
+   "standard_text": "机密文件"
+  },
+  {
+   "key": "JimonTextOption.Fixed8",
+   "standard_text": "非法复印"
+  },
+  {
+   "key": "JimonTextOption.Arbitrary1",
+   "standard_text": "机器设置1"
+  },
+  {
+   "key": "JimonTextOption.Arbitrary2",
+   "standard_text": "机器设置2"
+  },
+  {
+   "key": "JimonTextOption.Arbitrary3",
+   "standard_text": "机器设置3"
+  },
+  {
+   "key": "JimonTextOption.Arbitrary4",
+   "standard_text": "机器设置4"
+  },
+  {
+   "key": "JimonTextOption.Arbitrary5",
+   "standard_text": "机器设置5"
+  },
+  {
+   "key": "JimonTextOption.Arbitrary6",
+   "standard_text": "机器设置6"
+  },
+  {
+   "key": "JimonTextOption.Arbitrary7",
+   "standard_text": "机器设置7"
+  },
+  {
+   "key": "JimonTextOption.Arbitrary8",
+   "standard_text": "机器设置8"
+  },
+  {
+   "key": "JimonDateTimeSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "JimonDateTimeSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "CopyProtectOption",
+   "standard_text": "复印安全"
+  },
+  {
+   "key": "CopyProtectOption.CopyProtect",
+   "standard_text": "复印保护"
+  },
+  {
+   "key": "CopyProtectOption.StampRepeat",
+   "standard_text": "印记重复"
+  },
+  {
+   "key": "CopyProtectOption.CopyGuard",
+   "standard_text": "复印防止"
+  },
+  {
+   "key": "CopyProtectOption.PasswordCopy",
+   "standard_text": "密码复印"
+  },
+  {
+   "key": "JimonDateOption",
+   "standard_text": "日期格式"
+  },
+  {
+   "key": "JimonDateOption.Date1/<27>07/1",
+   "standard_text": "23"
+  },
+  {
+   "key": "JimonDateOption.Date2",
+   "standard_text": "Jan 23, 2007"
+  },
+  {
+   "key": "JimonDateOption.Date3/1/23",
+   "standard_text": "'07"
+  },
+  {
+   "key": "JimonDateOption.Date4",
+   "standard_text": "23 Jan, 2007"
+  },
+  {
+   "key": "JimonDateOption.Date5/23/1",
+   "standard_text": "'07"
+  },
+  {
+   "key": "JimonTimeOption",
+   "standard_text": "时间格式"
+  },
+  {
+   "key": "JimonTimeOption.Off",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "JimonTimeOption.Time1",
+   "standard_text": "1:23PM"
+  },
+  {
+   "key": "JimonTimeOption.Time2",
+   "standard_text": "13:23"
+  },
+  {
+   "key": "JimonSerialNumberSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "JimonSerialNumberSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "JimonNumberingSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "JimonNumberingSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "JimonNumberingOption",
+   "standard_text": "打印起始页码"
+  },
+  {
+   "key": "JimonNumberingOption.Fixed",
+   "standard_text": "8位数固定显示"
+  },
+  {
+   "key": "JimonNumberingOption.Number",
+   "standard_text": "只显示必要位数"
+  },
+  {
+   "key": "JimonJobIDSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "JimonJobIDSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "JimonCharacterSizeOption",
+   "standard_text": "文本大小"
+  },
+  {
+   "key": "JimonCharacterSizeOption.Small",
+   "standard_text": "较小"
+  },
+  {
+   "key": "JimonCharacterSizeOption.Normal",
+   "standard_text": "模板"
+  },
+  {
+   "key": "JimonCharacterSizeOption.Large",
+   "standard_text": "较大"
+  },
+  {
+   "key": "JimonAngleOption",
+   "standard_text": "角度"
+  },
+  {
+   "key": "JimonAngleOption.M45",
+   "standard_text": "-45度"
+  },
+  {
+   "key": "JimonAngleOption.0",
+   "standard_text": "0度"
+  },
+  {
+   "key": "JimonAngleOption.P45",
+   "standard_text": "+45度"
+  },
+  {
+   "key": "JimonEffectOption",
+   "standard_text": "模式"
+  },
+  {
+   "key": "JimonEffectOption.Embossed",
+   "standard_text": "浮雕文本"
+  },
+  {
+   "key": "JimonEffectOption.Outline",
+   "standard_text": "浮雕背景"
+  },
+  {
+   "key": "JimonOverWriteOption",
+   "standard_text": "样式覆盖"
+  },
+  {
+   "key": "JimonOverWriteOption.Front",
+   "standard_text": "正面（覆写）"
+  },
+  {
+   "key": "JimonOverWriteOption.Back",
+   "standard_text": "原稿优先"
+  },
+  {
+   "key": "JimonBackPatternOption",
+   "standard_text": "背景样式"
+  },
+  {
+   "key": "JimonBackPatternOption.Type1",
+   "standard_text": "样式1"
+  },
+  {
+   "key": "JimonBackPatternOption.Type2",
+   "standard_text": "样式2"
+  },
+  {
+   "key": "JimonBackPatternOption.Type3",
+   "standard_text": "样式3"
+  },
+  {
+   "key": "JimonBackPatternOption.Type4",
+   "standard_text": "样式4"
+  },
+  {
+   "key": "JimonBackPatternOption.Type5",
+   "standard_text": "样式5"
+  },
+  {
+   "key": "JimonBackPatternOption.Type6",
+   "standard_text": "样式6"
+  },
+  {
+   "key": "JimonBackPatternOption.Type7",
+   "standard_text": "样式7"
+  },
+  {
+   "key": "JimonBackPatternOption.Type8",
+   "standard_text": "样式8"
+  },
+  {
+   "key": "JimonColorOption",
+   "standard_text": "文字的颜色"
+  },
+  {
+   "key": "JimonColorOption.Black",
+   "standard_text": "黑色"
+  },
+  {
+   "key": "JimonColorOption.Magenta",
+   "standard_text": "深红色"
+  },
+  {
+   "key": "JimonColorOption.Cyan",
+   "standard_text": "青色"
+  },
+  {
+   "key": "JimonDensityOption",
+   "standard_text": "浓度"
+  },
+  {
+   "key": "JimonDensityOption.Light",
+   "standard_text": "-1"
+  },
+  {
+   "key": "JimonDensityOption.Normal",
+   "standard_text": "0"
+  },
+  {
+   "key": "JimonDensityOption.Dark",
+   "standard_text": "+1"
+  },
+  {
+   "key": "JimonContrastOption",
+   "standard_text": "样式对比度"
+  },
+  {
+   "key": "JimonContrastOption.Soft2",
+   "standard_text": "-2"
+  },
+  {
+   "key": "JimonContrastOption.Soft1",
+   "standard_text": "-1"
+  },
+  {
+   "key": "JimonContrastOption.Normal",
+   "standard_text": "0"
+  },
+  {
+   "key": "JimonContrastOption.Clear1",
+   "standard_text": "+1"
+  },
+  {
+   "key": "JimonContrastOption.Clear2",
+   "standard_text": "+2"
+  },
+  {
+   "key": "DtstpDateOption",
+   "standard_text": "日期格式"
+  },
+  {
+   "key": "DtstpDateOption.Date1/<27>07/1",
+   "standard_text": "23"
+  },
+  {
+   "key": "DtstpDateOption.Date2",
+   "standard_text": "Jan 23, 2007"
+  },
+  {
+   "key": "DtstpDateOption.Date3/1/23",
+   "standard_text": "'07"
+  },
+  {
+   "key": "DtstpDateOption.Date4",
+   "standard_text": "23 Jan, 2007"
+  },
+  {
+   "key": "DtstpDateOption.Date5/23/1",
+   "standard_text": "'07"
+  },
+  {
+   "key": "DtstpTimeOption",
+   "standard_text": "时间格式"
+  },
+  {
+   "key": "DtstpTimeOption.Off",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "DtstpTimeOption.Time1",
+   "standard_text": "1:23PM"
+  },
+  {
+   "key": "DtstpTimeOption.Time2",
+   "standard_text": "13:23"
+  },
+  {
+   "key": "DtstpPageOption",
+   "standard_text": "页"
+  },
+  {
+   "key": "DtstpPageOption.All",
+   "standard_text": "所有页"
+  },
+  {
+   "key": "DtstpPageOption.First",
+   "standard_text": "仅首页"
+  },
+  {
+   "key": "DtstpColorOption",
+   "standard_text": "文字的颜色"
+  },
+  {
+   "key": "DtstpColorOption.Black",
+   "standard_text": "黑色"
+  },
+  {
+   "key": "DtstpColorOption.Red",
+   "standard_text": "红色"
+  },
+  {
+   "key": "DtstpColorOption.Green",
+   "standard_text": "绿色"
+  },
+  {
+   "key": "DtstpColorOption.Blue",
+   "standard_text": "蓝色"
+  },
+  {
+   "key": "DtstpColorOption.Yellow",
+   "standard_text": "黄色"
+  },
+  {
+   "key": "DtstpColorOption.Magenta",
+   "standard_text": "深红色"
+  },
+  {
+   "key": "DtstpColorOption.Cyan",
+   "standard_text": "青色"
+  },
+  {
+   "key": "DtstpPositionOption",
+   "standard_text": "打印位置"
+  },
+  {
+   "key": "DtstpPositionOption.TopLeft",
+   "standard_text": "左上"
+  },
+  {
+   "key": "DtstpPositionOption.TopCenter",
+   "standard_text": "前端"
+  },
+  {
+   "key": "DtstpPositionOption.TopRight",
+   "standard_text": "右上"
+  },
+  {
+   "key": "DtstpPositionOption.CenterLeft",
+   "standard_text": "左"
+  },
+  {
+   "key": "DtstpPositionOption.Center",
+   "standard_text": "居中"
+  },
+  {
+   "key": "DtstpPositionOption.CenterRight",
+   "standard_text": "右"
+  },
+  {
+   "key": "DtstpPositionOption.BottomLeft",
+   "standard_text": "左下"
+  },
+  {
+   "key": "DtstpPositionOption.BottomCenter",
+   "standard_text": "尾端"
+  },
+  {
+   "key": "DtstpPositionOption.BottomRight",
+   "standard_text": "右下"
+  },
+  {
+   "key": "PageCoverSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PageCoverSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PageCoverOption",
+   "standard_text": "封面模式"
+  },
+  {
+   "key": "PageCoverOption.All",
+   "standard_text": "打印封面和封底"
+  },
+  {
+   "key": "PageCoverOption.NotFront",
+   "standard_text": "仅打印封底"
+  },
+  {
+   "key": "PageColorOption",
+   "standard_text": "文字的颜色"
+  },
+  {
+   "key": "PageColorOption.Black",
+   "standard_text": "黑色"
+  },
+  {
+   "key": "PageColorOption.Red",
+   "standard_text": "红色"
+  },
+  {
+   "key": "PageColorOption.Green",
+   "standard_text": "绿色"
+  },
+  {
+   "key": "PageColorOption.Blue",
+   "standard_text": "蓝色"
+  },
+  {
+   "key": "PageColorOption.Yellow",
+   "standard_text": "黄色"
+  },
+  {
+   "key": "PageColorOption.Magenta",
+   "standard_text": "深红色"
+  },
+  {
+   "key": "PageColorOption.Cyan",
+   "standard_text": "青色"
+  },
+  {
+   "key": "PagePositionOption",
+   "standard_text": "打印位置"
+  },
+  {
+   "key": "PagePositionOption.TopLeft",
+   "standard_text": "左上"
+  },
+  {
+   "key": "PagePositionOption.TopCenter",
+   "standard_text": "前端"
+  },
+  {
+   "key": "PagePositionOption.TopRight",
+   "standard_text": "右上"
+  },
+  {
+   "key": "PagePositionOption.CenterLeft",
+   "standard_text": "左"
+  },
+  {
+   "key": "PagePositionOption.Center",
+   "standard_text": "居中"
+  },
+  {
+   "key": "PagePositionOption.CenterRight",
+   "standard_text": "右"
+  },
+  {
+   "key": "PagePositionOption.BottomLeft",
+   "standard_text": "左下"
+  },
+  {
+   "key": "PagePositionOption.BottomCenter",
+   "standard_text": "尾端"
+  },
+  {
+   "key": "PagePositionOption.BottomRight",
+   "standard_text": "右下"
+  },
+  {
+   "key": "HFRecallOption",
+   "standard_text": "调用页眉/页脚"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary1",
+   "standard_text": "机器设置1"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary2",
+   "standard_text": "机器设置2"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary3",
+   "standard_text": "机器设置3"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary4",
+   "standard_text": "机器设置4"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary5",
+   "standard_text": "机器设置5"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary6",
+   "standard_text": "机器设置6"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary7",
+   "standard_text": "机器设置7"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary8",
+   "standard_text": "机器设置8"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary9",
+   "standard_text": "机器设置9"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary10",
+   "standard_text": "机器设置10"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary11",
+   "standard_text": "机器设置11"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary12",
+   "standard_text": "机器设置12"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary13",
+   "standard_text": "机器设置13"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary14",
+   "standard_text": "机器设置14"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary15",
+   "standard_text": "机器设置15"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary16",
+   "standard_text": "机器设置16"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary17",
+   "standard_text": "机器设置17"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary18",
+   "standard_text": "机器设置18"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary19",
+   "standard_text": "机器设置19"
+  },
+  {
+   "key": "HFRecallOption.Arbitrary20",
+   "standard_text": "机器设置20"
+  },
+  {
+   "key": "HFPrintInHeaderSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "HFPrintInHeaderSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "HFPrintInFooterSet.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "HFPrintInFooterSet.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "HFNumberingOption",
+   "standard_text": "打印起始页码"
+  },
+  {
+   "key": "HFNumberingOption.Fixed",
+   "standard_text": "8位数固定显示"
+  },
+  {
+   "key": "HFNumberingOption.Number",
+   "standard_text": "只显示必要位数"
+  },
+  {
+   "key": "HFPageOption",
+   "standard_text": "页"
+  },
+  {
+   "key": "HFPageOption.All",
+   "standard_text": "所有页"
+  },
+  {
+   "key": "HFPageOption.First",
+   "standard_text": "仅首页"
+  },
+  {
+   "key": "HFColorOption",
+   "standard_text": "文字的颜色"
+  },
+  {
+   "key": "HFColorOption.Black",
+   "standard_text": "黑色"
+  },
+  {
+   "key": "HFColorOption.Red",
+   "standard_text": "红色"
+  },
+  {
+   "key": "HFColorOption.Green",
+   "standard_text": "绿色"
+  },
+  {
+   "key": "HFColorOption.Blue",
+   "standard_text": "蓝色"
+  },
+  {
+   "key": "HFColorOption.Yellow",
+   "standard_text": "黄色"
+  },
+  {
+   "key": "HFColorOption.Magenta",
+   "standard_text": "深红色"
+  },
+  {
+   "key": "HFColorOption.Cyan",
+   "standard_text": "青色"
+  },
+  {
+   "key": "Resolution.600dpi",
+   "standard_text": "600dpi"
+  },
+  {
+   "key": "Resolution.1200dpi",
+   "standard_text": "1200dpi (高质量)"
+  },
+  {
+   "key": "SelectColor",
+   "standard_text": "颜色选择"
+  },
+  {
+   "key": "SelectColor.Color",
+   "standard_text": "自动颜色"
+  },
+  {
+   "key": "SelectColor.ColorFixed",
+   "standard_text": "全彩"
+  },
+  {
+   "key": "SelectColor.Grayscale",
+   "standard_text": "灰度级"
+  },
+  {
+   "key": "ColorModel",
+   "standard_text": "颜色选择"
+  },
+  {
+   "key": "ColorModel.CMYK",
+   "standard_text": "全彩"
+  },
+  {
+   "key": "ColorModel.Gray",
+   "standard_text": "灰度级"
+  },
+  {
+   "key": "GlossyMode.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "GlossyMode.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "TonerSave.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "TonerSave.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "Point4Character",
+   "standard_text": "边缘增强"
+  },
+  {
+   "key": "Point4Character.False",
+   "standard_text": "无"
+  },
+  {
+   "key": "Point4Character.Low",
+   "standard_text": "弱"
+  },
+  {
+   "key": "Point4Character.Middle",
+   "standard_text": "中"
+  },
+  {
+   "key": "Point4Character.High",
+   "standard_text": "强"
+  },
+  {
+   "key": "OriginalImageType",
+   "standard_text": "画质设置"
+  },
+  {
+   "key": "OriginalImageType.Document",
+   "standard_text": "文件"
+  },
+  {
+   "key": "OriginalImageType.Photo",
+   "standard_text": "照片"
+  },
+  {
+   "key": "OriginalImageType.CAD",
+   "standard_text": "CAD"
+  },
+  {
+   "key": "AutoTrapping.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "AutoTrapping.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "BlackOverPrint",
+   "standard_text": "黑色叠印"
+  },
+  {
+   "key": "BlackOverPrint.Off",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "BlackOverPrint.Text",
+   "standard_text": "文字"
+  },
+  {
+   "key": "LineWidthAdjustment",
+   "standard_text": "线宽度调整"
+  },
+  {
+   "key": "LineWidthAdjustment.Printers",
+   "standard_text": "机器设置"
+  },
+  {
+   "key": "LineWidthAdjustment.Thin",
+   "standard_text": "细"
+  },
+  {
+   "key": "LineWidthAdjustment.SlightlyThin",
+   "standard_text": "较细"
+  },
+  {
+   "key": "LineWidthAdjustment.Normal",
+   "standard_text": "标准"
+  },
+  {
+   "key": "LineWidthAdjustment.SlightlyThick",
+   "standard_text": "较粗"
+  },
+  {
+   "key": "LineWidthAdjustment.Thick",
+   "standard_text": "粗"
+  },
+  {
+   "key": "TextColorMatching",
+   "standard_text": "配色(文字)"
+  },
+  {
+   "key": "TextColorMatching.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "TextColorMatching.ColorEmphasis",
+   "standard_text": "颜色高亮(鲜艳)"
+  },
+  {
+   "key": "TextColorMatching.Sharp",
+   "standard_text": "彩色优先(清晰)"
+  },
+  {
+   "key": "TextColorMatching.Colorimetric",
+   "standard_text": "色差最小(自然)"
+  },
+  {
+   "key": "TextPureBlack",
+   "standard_text": "灰度补偿(文字)"
+  },
+  {
+   "key": "TextPureBlack.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "TextPureBlack.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "TextPureBlack.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "TextScreen",
+   "standard_text": "屏幕(文字)"
+  },
+  {
+   "key": "TextScreen.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "TextScreen.Gradation",
+   "standard_text": "灰度级优先"
+  },
+  {
+   "key": "TextScreen.Resolution",
+   "standard_text": "分辨率优先"
+  },
+  {
+   "key": "TextScreen.HighResolution",
+   "standard_text": "文字优先"
+  },
+  {
+   "key": "TextSourceProfile",
+   "standard_text": "RGB 颜色(文字)"
+  },
+  {
+   "key": "TextSourceProfile.None",
+   "standard_text": "设备颜色"
+  },
+  {
+   "key": "TextSourceProfile.sRGB",
+   "standard_text": "sRGB"
+  },
+  {
+   "key": "TextSourceProfile.AppleRGB",
+   "standard_text": "Apple RGB"
+  },
+  {
+   "key": "TextSourceProfile.AdobeRGB",
+   "standard_text": "Adobe RGB"
+  },
+  {
+   "key": "TextSourceProfile.ColorMatch",
+   "standard_text": "ColorMatch RGB"
+  },
+  {
+   "key": "TextSourceProfile.BlueAdjust",
+   "standard_text": "蓝色调整 RGB"
+  },
+  {
+   "key": "TextSourceProfile.__Custom_Profile__",
+   "standard_text": "CUSTOM"
+  },
+  {
+   "key": "TextDestinationProfile",
+   "standard_text": "目的地配置文件(文字)"
+  },
+  {
+   "key": "TextDestinationProfile.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "TextDestinationProfile.__Custom_Profile__",
+   "standard_text": "CUSTOM"
+  },
+  {
+   "key": "PhotoColorMatching",
+   "standard_text": "配色(照片)"
+  },
+  {
+   "key": "PhotoColorMatching.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "PhotoColorMatching.ColorEmphasis",
+   "standard_text": "颜色高亮(鲜艳)"
+  },
+  {
+   "key": "PhotoColorMatching.Sharp",
+   "standard_text": "彩色优先(清晰)"
+  },
+  {
+   "key": "PhotoColorMatching.Colorimetric",
+   "standard_text": "色差最小(自然)"
+  },
+  {
+   "key": "PhotoPureBlack",
+   "standard_text": "灰度补偿(照片)"
+  },
+  {
+   "key": "PhotoPureBlack.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "PhotoPureBlack.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PhotoPureBlack.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "PhotoScreen",
+   "standard_text": "屏幕(照片)"
+  },
+  {
+   "key": "PhotoScreen.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "PhotoScreen.Gradation",
+   "standard_text": "灰度级优先"
+  },
+  {
+   "key": "PhotoScreen.Resolution",
+   "standard_text": "分辨率优先"
+  },
+  {
+   "key": "PhotoScreen.HighResolution",
+   "standard_text": "文字优先"
+  },
+  {
+   "key": "PhotoSmoothing",
+   "standard_text": "平滑处理(照片)"
+  },
+  {
+   "key": "PhotoSmoothing.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "PhotoSmoothing.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "PhotoSmoothing.Dark",
+   "standard_text": "强"
+  },
+  {
+   "key": "PhotoSmoothing.Medium",
+   "standard_text": "普通"
+  },
+  {
+   "key": "PhotoSmoothing.Light",
+   "standard_text": "弱"
+  },
+  {
+   "key": "PhotoSourceProfile",
+   "standard_text": "RGB 颜色(照片)"
+  },
+  {
+   "key": "PhotoSourceProfile.None",
+   "standard_text": "设备颜色"
+  },
+  {
+   "key": "PhotoSourceProfile.sRGB",
+   "standard_text": "sRGB"
+  },
+  {
+   "key": "PhotoSourceProfile.AppleRGB",
+   "standard_text": "Apple RGB"
+  },
+  {
+   "key": "PhotoSourceProfile.AdobeRGB",
+   "standard_text": "Adobe RGB"
+  },
+  {
+   "key": "PhotoSourceProfile.ColorMatch",
+   "standard_text": "ColorMatch RGB"
+  },
+  {
+   "key": "PhotoSourceProfile.BlueAdjust",
+   "standard_text": "蓝色调整 RGB"
+  },
+  {
+   "key": "PhotoSourceProfile.__Custom_Profile__",
+   "standard_text": "CUSTOM"
+  },
+  {
+   "key": "PhotoDestinationProfile",
+   "standard_text": "目的地配置文件(照片)"
+  },
+  {
+   "key": "PhotoDestinationProfile.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "PhotoDestinationProfile.__Custom_Profile__",
+   "standard_text": "CUSTOM"
+  },
+  {
+   "key": "GraphicColorMatching",
+   "standard_text": "配色(图表)"
+  },
+  {
+   "key": "GraphicColorMatching.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "GraphicColorMatching.ColorEmphasis",
+   "standard_text": "颜色高亮(鲜艳)"
+  },
+  {
+   "key": "GraphicColorMatching.Sharp",
+   "standard_text": "彩色优先(清晰)"
+  },
+  {
+   "key": "GraphicColorMatching.Colorimetric",
+   "standard_text": "色差最小(自然)"
+  },
+  {
+   "key": "GraphicPureBlack",
+   "standard_text": "灰度补偿(图表)"
+  },
+  {
+   "key": "GraphicPureBlack.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "GraphicPureBlack.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "GraphicPureBlack.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "GraphicScreen",
+   "standard_text": "屏幕(图表)"
+  },
+  {
+   "key": "GraphicScreen.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "GraphicScreen.Gradation",
+   "standard_text": "灰度级优先"
+  },
+  {
+   "key": "GraphicScreen.Resolution",
+   "standard_text": "分辨率优先"
+  },
+  {
+   "key": "GraphicScreen.HighResolution",
+   "standard_text": "文字优先"
+  },
+  {
+   "key": "GraphicSmoothing",
+   "standard_text": "平滑处理(图表)"
+  },
+  {
+   "key": "GraphicSmoothing.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "GraphicSmoothing.None",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "GraphicSmoothing.Dark",
+   "standard_text": "强"
+  },
+  {
+   "key": "GraphicSmoothing.Medium",
+   "standard_text": "普通"
+  },
+  {
+   "key": "GraphicSmoothing.Light",
+   "standard_text": "弱"
+  },
+  {
+   "key": "GraphicSourceProfile",
+   "standard_text": "RGB 颜色(图表)"
+  },
+  {
+   "key": "GraphicSourceProfile.None",
+   "standard_text": "设备颜色"
+  },
+  {
+   "key": "GraphicSourceProfile.sRGB",
+   "standard_text": "sRGB"
+  },
+  {
+   "key": "GraphicSourceProfile.AppleRGB",
+   "standard_text": "Apple RGB"
+  },
+  {
+   "key": "GraphicSourceProfile.AdobeRGB",
+   "standard_text": "Adobe RGB"
+  },
+  {
+   "key": "GraphicSourceProfile.ColorMatch",
+   "standard_text": "ColorMatch RGB"
+  },
+  {
+   "key": "GraphicSourceProfile.BlueAdjust",
+   "standard_text": "蓝色调整 RGB"
+  },
+  {
+   "key": "GraphicSourceProfile.__Custom_Profile__",
+   "standard_text": "CUSTOM"
+  },
+  {
+   "key": "GraphicDestinationProfile",
+   "standard_text": "目的地配置文件(图表)"
+  },
+  {
+   "key": "GraphicDestinationProfile.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "GraphicDestinationProfile.__Custom_Profile__",
+   "standard_text": "CUSTOM"
+  },
+  {
+   "key": "SimulationProfile",
+   "standard_text": "模拟配置文件"
+  },
+  {
+   "key": "SimulationProfile.Auto",
+   "standard_text": "自动"
+  },
+  {
+   "key": "SimulationProfile.JC2001",
+   "standard_text": "JapanColor2001"
+  },
+  {
+   "key": "SimulationProfile.SWOP",
+   "standard_text": "SWOP"
+  },
+  {
+   "key": "SimulationProfile.Euroscale",
+   "standard_text": "Euroscale"
+  },
+  {
+   "key": "SimulationProfile.Commercial",
+   "standard_text": "商业印刷"
+  },
+  {
+   "key": "SimulationProfile.TOYO",
+   "standard_text": "TOYO"
+  },
+  {
+   "key": "SimulationProfile.DIC",
+   "standard_text": "DIC"
+  },
+  {
+   "key": "SimulationProfile.None",
+   "standard_text": "无"
+  },
+  {
+   "key": "SimulationProfile.__Custom_Profile__",
+   "standard_text": "CUSTOM"
+  },
+  {
+   "key": "SimMatchPaperColor.False",
+   "standard_text": "关闭"
+  },
+  {
+   "key": "SimMatchPaperColor.True",
+   "standard_text": "开启"
+  },
+  {
+   "key": "SimGrayTreatment",
+   "standard_text": "CMYK 灰度处理"
+  },
+  {
+   "key": "SimGrayTreatment.Composite",
+   "standard_text": "合成黑色"
+  },
+  {
+   "key": "SimGrayTreatment.BlackGray",
+   "standard_text": "黑色和灰色"
+  },
+  {
+   "key": "SimGrayTreatment.BlackOnly",
+   "standard_text": "仅黑色"
+  },
+  {
+   "key": "ModelName",
+   "standard_text": "KONICA MINOLTA bizhub C650i"
+  },
+  {
+   "key": "InstallableOptions",
+   "standard_text": "Options Installed"
+  },
+  {
+   "key": "PrinterHDD",
+   "standard_text": "存储"
+  },
+  {
+   "key": "SecurePrintOnly",
+   "standard_text": "仅限机密打印"
+  },
+  {
+   "key": "PublicUserAccess",
+   "standard_text": "允许公共用户"
+  },
+  {
+   "key": "SimplifiedPaperType",
+   "standard_text": "纸盒纸张设置"
+  },
+  {
+   "key": "General",
+   "standard_text": "General"
+  },
+  {
+   "key": "PageSize.Custom",
+   "standard_text": "Custom"
+  },
+  {
+   "key": "ParamCustomPageSize.Width",
+   "standard_text": "Width"
+  },
+  {
+   "key": "ParamCustomPageSize.Height",
+   "standard_text": "Height"
+  },
+  {
+   "key": "ParamCustomPageSize.WidthOffset",
+   "standard_text": "WidthOffset"
+  },
+  {
+   "key": "ParamCustomPageSize.HeightOffset",
+   "standard_text": "HeightOffset"
+  },
+  {
+   "key": "ParamCustomPageSize.Orientation",
+   "standard_text": "Orientation"
+  },
+  {
+   "key": "PageRegion",
+   "standard_text": "PageRegion"
+  },
+  {
+   "key": "PageRegion.Custom",
+   "standard_text": "Custom"
+  },
+  {
+   "key": "Finishing",
+   "standard_text": "Finishing Options"
+  },
+  {
+   "key": "Collate",
+   "standard_text": "分页"
+  },
+  {
+   "key": "KMCollate",
+   "standard_text": "分页"
+  },
+  {
+   "key": "Offset",
+   "standard_text": "偏移"
+  },
+  {
+   "key": "KMAuthentication",
+   "standard_text": "认证"
+  },
+  {
+   "key": "UserType",
+   "standard_text": "用户"
+  },
+  {
+   "key": "KMSection",
+   "standard_text": "部门管理"
+  },
+  {
+   "key": "NameServerPublic",
+   "standard_text": "共享用户"
+  },
+  {
+   "key": "KMBorderLine",
+   "standard_text": "重叠宽度线"
+  },
+  {
+   "key": "Rotate180",
+   "standard_text": "旋转180度"
+  },
+  {
+   "key": "ImageShift",
+   "standard_text": "图像移位"
+  },
+  {
+   "key": "BackAutoSetup",
+   "standard_text": "背面值等于正面值"
+  },
+  {
+   "key": "Chapter",
+   "standard_text": "章节"
+  },
+  {
+   "key": "StapleSet",
+   "standard_text": "装订"
+  },
+  {
+   "key": "PunchSet",
+   "standard_text": "打孔"
+  },
+  {
+   "key": "CarbonCopySet",
+   "standard_text": "复写"
+  },
+  {
+   "key": "CarbonCopyTray1",
+   "standard_text": "纸盘1"
+  },
+  {
+   "key": "CarbonCopyTray2",
+   "standard_text": "纸盘2"
+  },
+  {
+   "key": "CarbonCopyTray3",
+   "standard_text": "纸盘3"
+  },
+  {
+   "key": "CarbonCopyTray4",
+   "standard_text": "纸盘4"
+  },
+  {
+   "key": "CarbonCopyTray5",
+   "standard_text": "LCT"
+  },
+  {
+   "key": "CarbonCopyTray6",
+   "standard_text": "手送纸盘"
+  },
+  {
+   "key": "FrontCoverPage",
+   "standard_text": "封面"
+  },
+  {
+   "key": "BackCoverPage",
+   "standard_text": "封底"
+  },
+  {
+   "key": "PIFrontCoverPage",
+   "standard_text": "正面封皮"
+  },
+  {
+   "key": "PIBackCoverPage",
+   "standard_text": "背面封皮"
+  },
+  {
+   "key": "OHPInterleave",
+   "standard_text": "OHP插页"
+  },
+  {
+   "key": "PerPageSetting",
+   "standard_text": "逐页设置"
+  },
+  {
+   "key": "CopyProtectSet",
+   "standard_text": "复印安全"
+  },
+  {
+   "key": "DateTimeSet",
+   "standard_text": "日期/时间"
+  },
+  {
+   "key": "PageNumberSet",
+   "standard_text": "页码"
+  },
+  {
+   "key": "HeaderFooterSet",
+   "standard_text": "页眉/页脚"
+  },
+  {
+   "key": "JimonTextSet",
+   "standard_text": "字符"
+  },
+  {
+   "key": "JimonDateTimeSet",
+   "standard_text": "日期/时间"
+  },
+  {
+   "key": "JimonSerialNumberSet",
+   "standard_text": "序列号"
+  },
+  {
+   "key": "JimonNumberingSet",
+   "standard_text": "分布控制编号"
+  },
+  {
+   "key": "JimonJobIDSet",
+   "standard_text": "作业编号"
+  },
+  {
+   "key": "PageCoverSet",
+   "standard_text": "封面模式"
+  },
+  {
+   "key": "HFPrintInHeaderSet",
+   "standard_text": "打印在页眉内"
+  },
+  {
+   "key": "HFPrintInFooterSet",
+   "standard_text": "打印在页脚内"
+  },
+  {
+   "key": "Resolution",
+   "standard_text": "Resolution"
+  },
+  {
+   "key": "GlossyMode",
+   "standard_text": "光泽模式"
+  },
+  {
+   "key": "TonerSave",
+   "standard_text": "碳粉节省"
+  },
+  {
+   "key": "AutoTrapping",
+   "standard_text": "自动边缘润色"
+  },
+  {
+   "key": "SimMatchPaperColor",
+   "standard_text": "匹配纸张颜色"
+  },
+  {
+   "key": "BlackOverPrint.TextGraphic/文字",
+   "standard_text": "图片"
+  },
+  {
+   "key": "OriginalImageType.Document-Photo/文件",
+   "standard_text": "照片"
+  }
+ ]
+}

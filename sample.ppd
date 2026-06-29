@@ -1,21 +1,69 @@
 *PPD-Adobe: "4.3"
-*LanguageEncoding: UTF-8
-*LanguageVersion: Chinese
-*Manufacturer: "HP"
-*ModelName: "HP LaserJet Pro MFP"
-*NickName: "HP LaserJet Pro MFP 中文"
-*OpenUI *PageSize/页面大小: PickOne
+*FormatVersion: "4.3"
+*FileVersion: "1.0"
+*LanguageVersion: English
+*LanguageEncoding: ISOLatin1
+*ModelName: "LJ MFP 001"
+*ShortNickName: "LJ MFP 001"
+*NickName: "LJ MFP 001 Localization Sample"
+*Manufacturer: "ACME"
+*cupsLanguages: "en zh_CN"
+
+*OpenUI *PageSize/Media Size: PickOne
 *DefaultPageSize: A4
 *PageSize A4/A4: "<</PageSize[595 842]>>setpagedevice"
-*PageSize Letter/信纸: "<</PageSize[612 792]>>setpagedevice"
+*PageSize Letter/US Letter: "<</PageSize[612 792]>>setpagedevice"
 *CloseUI: *PageSize
-*OpenUI *Duplex/双面打印: PickOne
+
+*OpenUI *Duplex/Two-Sided Printing: PickOne
 *DefaultDuplex: None
-*Duplex None/关闭: ""
-*Duplex DuplexNoTumble/双面: ""
-*Duplex DuplexTumble/短边翻转: ""
+*Duplex None/Off: "<</Duplex false>>setpagedevice"
+*Duplex DuplexNoTumble/Long-Edge Binding: "<</Duplex true/Tumble false>>setpagedevice"
+*Duplex DuplexTumble/Short-Edge Binding: "<</Duplex true/Tumble true>>setpagedevice"
 *CloseUI: *Duplex
-*OpenUI *ColorModel/颜色模式: PickOne
-*ColorModel Gray/黑白: ""
-*ColorModel RGB/彩色: ""
+
+*OpenUI *ColorModel/Color Mode: PickOne
+*DefaultColorModel: Gray
+*ColorModel Gray/Grayscale: "<</cupsColorSpace 0>>setpagedevice"
+*ColorModel RGB/Color: "<</cupsColorSpace 1>>setpagedevice"
 *CloseUI: *ColorModel
+
+*OpenUI *Resolution/Resolution: PickOne
+*DefaultResolution: 600dpi
+*Resolution 600dpi/600 dpi: "<</HWResolution[600 600]>>setpagedevice"
+*CloseUI: *Resolution
+
+*OpenUI *Collate/Collate: PickOne
+*DefaultCollate: True
+*Collate True/On: ""
+*CloseUI: *Collate
+
+*OpenUI *MediaType/Media Type: PickOne
+*DefaultMediaType: Plain
+*MediaType Plain/Plain Paper: ""
+*CloseUI: *MediaType
+
+*% ---------------- zh_CN 本地化 ----------------
+*zh_CN.Translation PageSize/纸张尺寸: ""
+*zh_CN.PageSize A4/A4: ""
+*zh_CN.PageSize Letter/信纸: ""
+
+*zh_CN.Translation Duplex/双面打印: ""
+*zh_CN.Duplex None/关闭: ""
+*zh_CN.Duplex DuplexNoTumble/长边装订: ""
+*zh_CN.Duplex DuplexTumble/短边装…: ""
+
+*zh_CN.Translation ColorModel/颜色模式: ""
+*zh_CN.ColorModel Gray/灰阶: ""
+*% 注意: ColorModel RGB 的 zh_CN 本地化故意缺失
+
+*zh_CN.Translation Resolution/分辨率: ""
+*zh_CN.Resolution 600dpi/600 dpi�: ""
+
+*zh_CN.Translation Collate/逐份打印: ""
+*zh_CN.Collate True/逐份: ""
+
+*zh_CN.Translation MediaType/介质类型: ""
+*zh_CN.MediaType Plain/普通纸: ""
+
+*% End of PPD
